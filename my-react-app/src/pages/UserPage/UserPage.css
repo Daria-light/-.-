@@ -1,0 +1,185 @@
+.users-panel {
+  display: grid;
+  gap: 20px;
+}
+
+.users-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #f8f7ff 0%, #eef4ff 55%, #f7fbff 100%);
+  border: 1px solid rgba(222, 226, 244, 0.95);
+  box-shadow: var(--shadow);
+}
+
+.users-hero::before {
+  content: '';
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(103, 82, 245, 0.18),
+    transparent 70%
+  );
+}
+
+.users-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.users-hero h2 {
+  margin: 0 0 10px;
+  color: #15123f;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.users-hero p {
+  margin: 0;
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 20px;
+}
+
+.user-form,
+.users-list {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(222, 226, 244, 0.95);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.user-form {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.user-form h3,
+.users-list h3 {
+  color: #15123f;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.user-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #15123f;
+}
+
+.user-form input,
+.user-form select {
+  width: 100%;
+}
+
+.users-table-wrap {
+  overflow: auto;
+  max-height: 650px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.users-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f4f5ff;
+  color: #15123f;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: left;
+  padding: 12px;
+}
+
+.users-table tbody td {
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: #424866;
+}
+
+.users-table tbody tr {
+  transition: 0.15s;
+}
+
+.users-table tbody tr:hover {
+  background: #fafbff;
+}
+
+.role-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #f1efff;
+  color: #5740d9;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.role-chip.view {
+  background: #f4f5fb;
+  color: #5e647a;
+}
+
+.acts-status {
+  white-space: pre-line;
+  font-size: 13px;
+  color: #424866;
+  background: #f5f7fc;
+  border-radius: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+}
+
+.users-table .small-btn {
+  padding: 7px 10px;
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .users-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .users-hero {
+    padding: 20px;
+  }
+
+  .users-hero h2 {
+    font-size: 24px;
+  }
+
+  .user-form,
+  .users-list {
+    padding: 16px;
+  }
+
+  .users-table {
+    min-width: 900px;
+  }
+}
