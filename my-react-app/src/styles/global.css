@@ -97,7 +97,7 @@ select {
 }
 
 .card {
-  background: var(--card);
+  background-color: var(--card);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
 }
@@ -136,4 +136,172 @@ textarea:focus {
   border-color: var(--violet);
 
   box-shadow: 0 0 0 4px rgba(103, 82, 245, 0.12);
+}
+
+.panel {
+  background-color: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(222, 226, 244, 0.95);
+  border-radius: 2rem;
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f3f4f8 25%, #ffffff 50%, #f3f4f8 75%) 0
+    0 / 300% 100%;
+  border-radius: 1rem;
+
+  /* background-size: 300% 100%; */
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+/* Основная кнопка */
+
+.main-btn {
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--violet), var(--violet-2));
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 12px 16px;
+  box-shadow: 0 12px 28px rgba(103, 82, 245, 0.26);
+  transition: all 0.15s ease;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.main-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(103, 82, 245, 0.32);
+}
+
+.main-btn:active {
+  transform: translateY(0);
+}
+
+.main-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.main-btn.secondary {
+  background: #fff;
+  color: var(--violet);
+  border: 1px solid #ded9ff;
+  box-shadow: none;
+}
+
+.main-btn.secondary:hover {
+  background: #f8f7ff;
+  border-color: #cfc7ff;
+  transform: translateY(-1px);
+}
+
+/* Широкая кнопка */
+
+.main-btn.wide {
+  min-width: 180px;
+}
+
+.small-btn {
+  border: 1px solid #ded9ff;
+  background: #fff;
+  color: var(--violet);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.field-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+
+  padding: 10px 2rem 10px 16px;
+
+  background-color: #fff;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, #7d82a0 50%),
+    linear-gradient(135deg, #7d82a0 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 0.9rem) calc(50% + 0.1rem),
+    calc(100% - 0.6rem) calc(50% + 0.1rem);
+
+  background-size: 0.3rem 0.3rem;
+  background-repeat: no-repeat;
+
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s,
+    background 0.18s;
+}
+
+.field-select:hover {
+  border-color: #bdb2ff;
+  background-color: #fbfbff;
+}
+
+.field-select:focus {
+  border-color: var(--violet);
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--violet) 50%),
+    linear-gradient(135deg, var(--violet) 50%, transparent 50%);
+}
+
+/* Стили для option */
+.field-select option {
+  background: #fff;
+  color: var(--nav);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 14px;
+  border: none;
+  border-bottom: 1px solid rgba(103, 82, 245, 0.08);
+  transition: 0.15s;
+}
+
+.field-select option:hover {
+  background: var(--violet-1);
+  color: var(--nav);
+}
+
+.field-select option:checked {
+  background: var(--violet);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Для option в Firefox */
+.field-select option:focus,
+.field-select option:active {
+  background: var(--violet);
+  color: #fff;
+}
+
+/* Для option в Chrome/Edge при наведении через клавиатуру */
+.field-select option:checked:hover {
+  background: var(--violet-2);
+  color: #fff;
 }

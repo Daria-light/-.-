@@ -1,94 +1,46 @@
 import React from 'react'
-import './PdfPage.css'
+import styles from './PdfPage.module.css'
+import AppSelect from '../../shared/ui/AppSelect/AppSelect'
 
 function PdfPage() {
   return (
     <>
-      <div className="panel">
-        <div className="filters">
-          <select className="field-select">
-            <option>Геометрия</option>
-          </select>
-
-          <select className="field-select">
-            <option>Акты</option>
-          </select>
-
-          <select className="field-select">
-            <option>Загрузка в СОК</option>
-          </select>
-
-          <select className="field-select">
-            <option>Обновление АИС</option>
-          </select>
-
-          <select className="field-select">
-            <option>Карточки</option>
-          </select>
-
-          <select className="field-select">
-            <option>Программа</option>
-          </select>
-
-          <select className="field-select">
-            <option>Исполнитель</option>
-          </select>
-
-          <select className="field-select">
-            <option>Подрядчик</option>
-          </select>
+      <section id="monitoringTab" className={['panel']}>
+        <div className={styles['filters']}>
+          <AppSelect id="geometryFilter"></AppSelect>
+          <AppSelect id="actFilter"></AppSelect>
+          <AppSelect id="uploadFilter"></AppSelect>
+          <AppSelect id="aisUpdateFilter"></AppSelect>
+          <AppSelect id="cardFilter"></AppSelect>
+          <AppSelect id="programFilter"></AppSelect>
+          <AppSelect id="executorFilter"></AppSelect>
+          <AppSelect id="contractorFilter"></AppSelect>
         </div>
+        <div className={styles['search-row']}>
+          <input
+            id="objectSearch"
+            placeholder="Поиск объекта по наименованию"
+            className={styles['search-input']}
+          />
+          <AppSelect id="districtFilter"></AppSelect>
 
-        <div className="search-row">
-          <input type="text" placeholder="Поиск объекта по наименованию" />
-
-          <select className="field-select">
-            <option>Район</option>
-          </select>
-
-          <button className="main-btn">⎚ Сбросить фильтры</button>
+          <button
+            className={['main-btn']}
+            onClick={() => window.resetFilters && window.resetFilters()}
+          >
+            ⎚ Сбросить фильтры
+          </button>
         </div>
-
-        <div className="charts">
-          <div className="chart-card">
-            <h3>Статус геометрии</h3>
-          </div>
-
-          <div className="chart-card">
-            <h3>Статус актов</h3>
-          </div>
-
-          <div className="chart-card">
-            <h3>Загрузка в СОК</h3>
-          </div>
-
-          <div className="chart-card">
-            <h3>Карточки объектов</h3>
-          </div>
-
-          <div className="chart-card">
-            <h3>Исполнители</h3>
-          </div>
+        <div className={styles['charts']}>
+          <div className={styles['chart-card']} id="chartGeometry"></div>
+          <div className={styles['chart-card']} id="chartAct"></div>
+          <div className={styles['chart-card']} id="chartUpload"></div>
+          <div className={styles['chart-card']} id="chartCard"></div>
+          <div className={styles['chart-card']} id="chartExecutor"></div>
         </div>
-
-        <div className="cards">
-          <div className="empty">
-            Данные мониторинга будут отображаться здесь
-          </div>
-        </div>
-
-        <div className="pager">
-          <button className="page-btn">←</button>
-
-          <button className="page-btn active">1</button>
-
-          <button className="page-btn">2</button>
-
-          <button className="page-btn">3</button>
-
-          <button className="page-btn">→</button>
-        </div>
-      </div>
+        <div id="cards" className={styles['cards']}></div>
+        <div id="pager" className={styles['pager']}></div>
+      </section>
     </>
   )
 }

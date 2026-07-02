@@ -1,0 +1,2 @@
+[2026-06-26T13:55:12.414Z] [INFO] Evaluation started
+[2026-06-26T13:55:12.415Z] [ERROR] EVAL_AGENT.json not found in workspace root

@@ -1,88 +1,92 @@
 import React from 'react'
-import './ActPage.css'
+import styles from './ActPage.module.css'
 
 function ActPage() {
   return (
-    <div className="acts-panel">
-      <section className="acts-hero">
+    <div className={styles['acts-panel']}>
+      <section className={styles['acts-hero']}>
         <h2>Работа с актами</h2>
 
-        <p className="muted-note">
+        <p className={styles['muted-note']}>
           Обновление списка актов, массовое формирование документов и связывание
           PDF-файлов.
         </p>
 
-        <div className="acts-kpi-row">
-          <div className="acts-kpi">
+        <div className={styles['acts-kpi-row']}>
+          <div className={styles['acts-kpi']}>
             <span>Основные акты</span>
             <b>3 стр.</b>
           </div>
 
-          <div className="acts-kpi">
+          <div className={styles['acts-kpi']}>
             <span>Приложение</span>
             <b>4 стр.</b>
           </div>
 
-          <div className="acts-kpi">
+          <div className={styles['acts-kpi']}>
             <span>Источник</span>
             <b>Drive</b>
           </div>
         </div>
       </section>
 
-      <section className="acts-grid">
-        <div className="acts-box">
+      <section className={styles['acts-grid']}>
+        <div className={styles['acts-box']}>
           <h3>Синхронизация с Google Drive</h3>
 
-          <div className="acts-actions">
-            <button className="main-btn">Обновить список актов</button>
+          <div className={styles['acts-actions']}>
+            <button className={['main-btn']}>Обновить список актов</button>
 
-            <button className="main-btn secondary">Сопоставить акты</button>
+            <button className={['main-btn'] + ' ' + ['secondary']}>
+              Сопоставить акты
+            </button>
           </div>
         </div>
 
-        <div className="acts-box">
+        <div className={styles['acts-box']}>
           <h3>Формирование акта</h3>
 
-          <div className="acts-create">
+          <div className={styles['acts-create']}>
             <input placeholder="Поиск объектов для формирования актов" />
 
-            <div className="act-selected-panel">
+            <div className={styles['act-selected-panel']}>
               <span>Выбрано объектов: 0</span>
 
-              <div className="act-mini-actions">
-                <button className="small-btn">Выбрать найденные</button>
+              <div className={styles['act-mini-actions']}>
+                <button className={['small-btn']}>Выбрать найденные</button>
 
-                <button className="small-btn">Снять выбор</button>
+                <button className={['small-btn']}>Снять выбор</button>
               </div>
             </div>
 
-            <div className="act-list">
-              <div className="label">Здесь будет список объектов</div>
+            <div className={styles['act-list']}>
+              <div className={styles['label']}>Здесь будет список объектов</div>
             </div>
 
-            <button className="main-btn">Сформировать акт</button>
+            <button className={['main-btn']}>Сформировать акт</button>
 
-            <button className="main-btn secondary">Экспорт PDF</button>
+            <button className={['main-btn'] + ' ' + ['secondary']}>
+              Экспорт PDF
+            </button>
 
-            <div className="acts-status">
+            <div className={styles['acts-status']}>
               Выберите объекты для формирования акта
             </div>
           </div>
         </div>
       </section>
 
-      <section className="pdf-tools-grid">
-        <div className="acts-box">
+      <section className={styles['pdf-tools-grid']}>
+        <div className={styles['acts-box']}>
           <h3>Обработка PDF</h3>
 
-          <div className="acts-create">
-            <div className="pdf-help">
+          <div className={styles['acts-create']}>
+            <div className={styles['pdf-help']}>
               Загрузите один или несколько PDF файлов.
             </div>
 
-            <label className="drop-zone">
-              <span className="drop-zone-icon">⇪</span>
+            <label className={styles['drop-zone']}>
+              <span className={styles['drop-zone-icon']}>⇪</span>
 
               <strong>Перетащите PDF сюда</strong>
 
@@ -91,78 +95,92 @@ function ActPage() {
               <input type="file" multiple accept=".pdf" />
             </label>
 
-            <div className="pdf-file-list">
-              <div className="label">PDF ещё не загружены</div>
+            <div className={styles['pdf-file-list']}>
+              <div className={styles['label']}>PDF ещё не загружены</div>
             </div>
 
-            <div className="pdf-actions-row">
-              <button className="main-btn">Оставить 3 страницы</button>
+            <div className={styles['pdf-actions-row']}>
+              <button className={['main-btn']}>Оставить 3 страницы</button>
 
-              <button className="main-btn secondary">Сохранить</button>
+              <button className={['main-btn'] + ' ' + ['secondary']}>
+                Сохранить
+              </button>
             </div>
           </div>
         </div>
 
-        <div className="acts-box">
+        <div className={styles['acts-box']}>
           <h3>Статус обработки</h3>
 
-          <div className="acts-status">Загрузите PDF для начала работы</div>
+          <div className={styles['acts-status']}>
+            Загрузите PDF для начала работы
+          </div>
         </div>
       </section>
 
-      <section className="drive-link-panel">
-        <div className="drive-link-head">
+      <section className={styles['drive-link-panel']}>
+        <div className={styles['drive-link-head']}>
           <div>
             <h3>Связать PDF между собой</h3>
 
             <p>Выберите основной PDF и PDF-приложение.</p>
           </div>
 
-          <button className="small-btn">Обновить</button>
+          <button className={['small-btn']}>Обновить</button>
         </div>
 
-        <div className="drive-columns">
-          <div className="drive-column">
-            <div className="drive-column-title">
+        <div className={styles['drive-columns']}>
+          <div className={styles['drive-column']}>
+            <div className={styles['drive-column-title']}>
               <b>Основные PDF</b>
               <span>0 файлов</span>
             </div>
 
-            <input className="drive-search" placeholder="Поиск PDF..." />
+            <input
+              className={styles['drive-search']}
+              placeholder="Поиск PDF..."
+            />
 
-            <div className="drive-file-list">
-              <div className="label">Загрузка...</div>
+            <div className={styles['drive-file-list'] + ' ' + 'skeleton'}>
+              <div className={styles['label']}></div>
             </div>
           </div>
 
-          <div className="drive-column">
-            <div className="drive-column-title">
+          <div className={styles['drive-column']}>
+            <div className={styles['drive-column-title']}>
               <b>PDF приложение</b>
               <span>0 файлов</span>
             </div>
 
-            <input className="drive-search" placeholder="Поиск PDF..." />
+            <input
+              className={styles['drive-search']}
+              placeholder="Поиск PDF..."
+            />
 
-            <div className="drive-file-list">
-              <div className="label">Загрузка...</div>
+            <div className={styles['drive-file-list'] + ' ' + 'skeleton'}>
+              <div className={styles['label']}></div>
             </div>
           </div>
         </div>
 
-        <div className="merge-name-panel">
+        <div className={styles['merge-name-panel']}>
           <label>Имя итогового PDF</label>
 
           <input placeholder="Название итогового файла" />
 
-          <div className="merge-name-hint">
+          <div className={styles['merge-name-hint']}>
             Если поле пустое — имя будет создано автоматически.
           </div>
         </div>
 
-        <div className="drive-connect-footer">
-          <div className="selected-pair">Выберите файлы для объединения</div>
+        <div className={styles['drive-connect-footer']}>
+          <div className={styles['selected-pair']}>
+            Выберите файлы для объединения
+          </div>
 
-          <button className="main-btn wide">Связать PDF</button>
+          <button className={['main-btn'] + ' ' + styles['wide']}>
+            Связать PDF
+          </button>
         </div>
       </section>
     </div>

@@ -1,11 +1,21 @@
 import React from 'react'
-import './UserPage.css'
+import styles from './UserPage.module.css'
+import AppSelect from '../../shared/ui/AppSelect/AppSelect'
+
+const role = [
+  { value: '', label: 'Администратор' },
+  { value: 'VW', label: 'Просмотр' },
+]
+const state = [
+  { value: '', label: 'Активен' },
+  { value: 'Off', label: 'Отключен' },
+]
 
 function UserPage() {
   return (
     <>
-      <div className="users-panel">
-        <div className="users-hero">
+      <div className={styles['users-panel']}>
+        <div className={styles['users-hero']}>
           <h2>Пользователи и роли</h2>
           <p>
             Управление индивидуальными учетными записями платформы. Сейчас
@@ -14,8 +24,8 @@ function UserPage() {
           </p>
         </div>
 
-        <div className="users-grid">
-          <div className="user-form">
+        <div className={styles['users-grid']}>
+          <div className={styles['user-form']}>
             <h3 style={{ margin: 0 }}>Добавить / обновить пользователя</h3>
 
             <label>
@@ -40,32 +50,26 @@ function UserPage() {
 
             <label>
               Роль
-              <select className="field-select">
-                <option>Администратор</option>
-                <option>Просмотр</option>
-              </select>
+              <AppSelect options={role} placeholder=""></AppSelect>
             </label>
 
             <label>
               Статус
-              <select className="field-select">
-                <option>Активен</option>
-                <option>Отключен</option>
-              </select>
+              <AppSelect options={state} placeholder=""></AppSelect>
             </label>
 
-            <button className="main-btn">Сохранить пользователя</button>
+            <button className={['main-btn']}>Сохранить пользователя</button>
 
-            <div className="acts-status">
+            <div className={styles['acts-status']}>
               Данные пользователей загружаются только для администратора.
             </div>
           </div>
 
-          <div className="users-list">
+          <div className={styles['users-list']}>
             <h3 style={{ margin: '0 0 12px' }}>Список пользователей</h3>
 
-            <div className="users-table-wrap">
-              <table className="users-table">
+            <div className={styles['users-table-wrap']}>
+              <table className={styles['users-table']}>
                 <thead>
                   <tr>
                     <th>Email</th>
@@ -92,12 +96,12 @@ function UserPage() {
                     <td>Инженер</td>
                     <td>Производственный отдел</td>
                     <td>
-                      <span className="role-chip">Администратор</span>
+                      <span className={styles['role-chip']}>Администратор</span>
                     </td>
                     <td>Активен</td>
                     <td>24.06.2026 09:42</td>
                     <td>
-                      <button className="small-btn">Изменить</button>
+                      <button className={['small-btn']}>Изменить</button>
                     </td>
                   </tr>
                 </tbody>

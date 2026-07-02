@@ -1,0 +1,183 @@
+/* .field-select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #7d82a0 50%),
+    linear-gradient(135deg, #7d82a0 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 51%,
+    calc(100% - 13px) 51%;
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(150px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+} */
+
+.search-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.chart-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sm);
+  padding: 1.1rem;
+  min-height: 184px;
+}
+
+/* MOBILE */
+
+@media (max-width: 1300px) {
+  .tasks-toolbar,
+  .monitoring-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .monitoring-kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .monitoring-kpi-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tasks-grid,
+  .monitoring-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .task-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .monitoring-hero h2 {
+    font-size: 28px;
+  }
+}
+.field-select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #7d82a0 50%),
+    linear-gradient(135deg, #7d82a0 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 51%,
+    calc(100% - 13px) 51%;
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+
+/* БАЗОВЫЕ СТИЛИ ДЛЯ БОЛЬШИХ ЭКРАНОВ (DESKTOP) */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(150px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.search-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.chart-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sm);
+  padding: 1.1rem;
+  min-height: 184px;
+}
+
+/* ТВОЙ СУЩЕСТВУЮЩИЙ АДАПТИВ + НОВЫЕ СЕТКИ */
+
+/* ПЛАНШЕТЫ (Экран меньше 1100px) */
+@media (max-width: 1300px) {
+  .tasks-toolbar,
+  .monitoring-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .monitoring-kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Фильтры: делим на 3 колонки (вместо 6), чтобы текст не сжимался */
+  .filters {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Карточки/графики: перестраиваем в 2 или 3 колонки в зависимости от места */
+  .charts {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+/* СРЕДНИЕ ЭКРАНЫ / ТЕЛЕФОНЫ ГОРИЗОНТАЛЬНО (Меньше 900px) */
+@media (max-width: 900px) {
+  /* Строка поиска: выстраиваем элементы друг под другом для удобства ввода */
+  .search-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* МОБИЛЬНЫЕ ТЕЛЕФОНЫ (Экран меньше 760px) */
+@media (max-width: 760px) {
+  .monitoring-kpi-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tasks-grid,
+  .monitoring-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .task-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .monitoring-hero h2 {
+    font-size: 28px;
+  }
+
+  /* Фильтры на мобилках: выстраиваем строго в 1 колонку */
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  /* Графики на мобилках: каждый график занимает всю ширину экрана */
+  .charts {
+    grid-template-columns: 1fr;
+  }
+}

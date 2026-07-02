@@ -1,110 +1,249 @@
 import React from 'react'
-import './Dashboard.css'
+import styles from './Dashboard.module.css'
+import { NavLink } from 'react-router-dom'
 
 function DashboardPage() {
   return (
-    <div className="dashboard-page">
-      <section className="home-hero">
+    <div className={styles['dashboard-page']}>
+      <section className={styles['home-hero']}>
         <div>
-          <div className="home-overline">АИС Мониторинг объектов</div>
+          <div className={styles['home-overline']}>
+            Главная · Мониторинг состояния объектов УДС
+          </div>
 
-          <h2>
-            Единая рабочая среда для контроля объектов, актов, титулов и задач
-          </h2>
+          <h2>Единая панель управления рабочими процессами</h2>
 
-          <p>
-            Быстрый доступ к основным разделам системы, актуальным задачам и
-            ключевым показателям.
+          <p className={styles['home-overline-p']}>
+            Оперативная сводка по объектам УДС, статусам работ, загрузке актов,
+            карточкам по титулу и текущим задачам. Все ключевые показатели и
+            рабочие разделы собраны на одном экране в единой визуальной
+            стилистике.
           </p>
 
-          <div className="home-hero-actions">
-            <button className="primary-btn">Перейти к объектам</button>
+          <div className={styles['home-hero-actions']}>
+            <NavLink to="/pdf" className={['main-btn']}>
+              Открыть мониторинг
+            </NavLink>
 
-            <button className="home-ghost-btn">Открыть задачи</button>
+            <NavLink to="/work-status" className={styles['home-ghost-btn']}>
+              Перейти к статусам работ
+            </NavLink>
           </div>
         </div>
 
-        <div className="home-hero-side">
-          <div className="home-date-chip">Июнь 2026</div>
+        <div className={styles['home-hero-side']}>
+          <div className={styles['home-date-chip']}>Сегодня</div>
 
-          <div className="home-side-panel">
-            <span>Система</span>
+          <div className={styles['home-side-panel']}>
+            <span className={styles['home-side-panel-span']}>
+              ОБЩИЙ КОНТЕКСТ
+            </span>
 
-            <b>Все данные под контролем</b>
+            <b className={styles['home-side-panel-b']}>
+              Мониторинг, акты, титул и задачи
+            </b>
 
-            <p>
-              Мониторинг объектов, актов, титулов и статусов работ в одном
-              интерфейсе.
+            <p className={styles['home-side-panel-p']}>
+              Сводка формируется автоматически на основе данных платформы и
+              помогает быстро перейти к нужному рабочему разделу.
             </p>
 
-            <div className="home-side-badges">
-              <span>Объекты</span>
-              <span>Акты</span>
-              <span>Задачи</span>
+            <div className={styles['home-side-badges']}>
+              <span className={styles['home-side-badge']}>АИС ЦД</span>
+              <span className={styles['home-side-badge']}>СОК</span>
+              <span className={styles['home-side-badge']}>2026-2027</span>
             </div>
           </div>
         </div>
       </section>
+      <section className={styles['home-metrix']}>
+        <div
+          className={`${styles['chart-card']} ${styles['home-chart-card']} ${'skeleton'}`}
+          id="homeChartGeometry"
+        ></div>
+        <div
+          className={`${styles['chart-card']} ${styles['home-chart-card']} ${'skeleton'}`}
+          id="homeChartAct"
+        ></div>
+        <div
+          className={`${styles['chart-card']} ${styles['home-chart-card']} ${'skeleton'}`}
+          id="homeChartUpload"
+        ></div>
+        <div
+          className={`${styles['home-card']} ${styles['home-important-card']}`}
+        >
+          <div className={styles['home-important-icon']}>▤</div>
+          <span>Осталось актуализировать</span>
+          <b id="homeWorkImportantCount">—</b>
+          <p>
+            Карточки, где статус объекта изменился на «В работе» или «Завершен».
+            Эти карточки требуют первоочередного внимания.
+          </p>
+          <NavLink className={styles['small-btn']} to="/work-status">
+            Открыть статусы
+          </NavLink>
+        </div>
+        <div
+          className={`${styles['home-card']} ${styles['home-title-chart']}`}
+          id="homeTitleChart2026"
+        >
+          <div className={styles['label']}>Дорожная карта 2026</div>
+          <div
+            className={`${styles['home-title-loading']} ${'skeleton'}`}
+          ></div>
+        </div>
+        <div
+          className={`${styles['home-card']} ${styles['home-title-chart']}`}
+          id="homeTitleChart2027"
+        >
+          <div className={styles['label']}>Дорожная карта 2027</div>
+          <div
+            className={`${styles['home-title-loading']} ${'skeleton'}`}
+          ></div>
+        </div>
+      </section>
 
-      <section className="home-layout">
-        <div className="home-card home-modules-card">
-          <div className="home-card-head">
+      <section className={styles['home-layout']}>
+        <div
+          className={`${styles['home-card']} ${styles['home-modules-card']}`}
+        >
+          <div className={styles['home-card-head']}>
             <div>
               <h3>Рабочие разделы</h3>
 
-              <p className="home-card-sub">Основные разделы платформы</p>
+              <p className={styles['home-card-sub']}>
+                Быстрые переходы к основным модулям платформы для ежедневной
+                работы сотрудников.
+              </p>
             </div>
           </div>
 
-          <div className="home-module-grid">
-            <button className="home-module">
-              <div className="home-module-icon">⌂</div>
+          <div className={styles['home-module-grid']}>
+            <NavLink to="/pdf" className={styles['home-module']}>
+              <div className={styles['home-module-icon']}>⌂</div>
 
               <h4>Мониторинг объектов</h4>
 
               <p>Статусы геометрии, актов и карточек.</p>
-            </button>
+              <div className={styles['home-module-meta']}>
+                <span className={`${styles['home-module-badge']}`}>
+                  0 объектов
+                </span>
+                <span
+                  className={`${styles['home-module-badge']} ${styles['danger']}`}
+                >
+                  0 проблем
+                </span>
+              </div>
+            </NavLink>
 
-            <button className="home-module">
-              <div className="home-module-icon">□</div>
+            <NavLink to="/acts" className={styles['home-module']}>
+              <div className={styles['home-module-icon']}>□</div>
 
               <h4>Работа с актами</h4>
 
-              <p>Формирование и экспорт PDF.</p>
-            </button>
+              <p>
+                Формирование актов, экспорт PDF и связывание файлов с объектами.
+              </p>
+              <div className={styles['home-module-meta']}>
+                <span
+                  className={`${styles['home-module-badge']} ${styles['danger']}`}
+                >
+                  PDF / Drive
+                </span>
+                <span className={styles['home-module-badge']}>акты</span>
+              </div>
+            </NavLink>
 
-            <button className="home-module">
-              <div className="home-module-icon">▤</div>
+            <NavLink to="/work-status" className={styles['home-module']}>
+              <div className={styles['home-module-icon']}>▤</div>
 
               <h4>Статусы работ</h4>
 
-              <p>КБУ, ТекРем и актуализация.</p>
-            </button>
+              <p>
+                Актуализация КБУ и ТекРем, сроки СМР, ресурсы и финансирование.
+              </p>
+              <div className={styles['home-module-meta']}>
+                <span
+                  className={`${styles['home-module-badge']} ${styles['warn']}`}
+                >
+                  актуализация
+                </span>
+                <span
+                  className={`${styles['home-module-badge']} ${styles['danger']}`}
+                >
+                  Подготовительные / В работе / Завершен
+                </span>
+              </div>
+            </NavLink>
 
-            <button className="home-module">
-              <div className="home-module-icon">☑</div>
+            <NavLink to="/tasks" className={styles['home-module']}>
+              <div className={styles['home-module-icon']}>▥</div>
+
+              <h4>Карточки по титулу</h4>
+
+              <p>
+                Создание и актуализация карточек, шаблоны заполнения и
+                обоснования.
+              </p>
+              <div className={styles['home-module-meta']}>
+                <span className={styles['home-module-badge']}>2026 год</span>
+                <span
+                  className={`${styles['home-module-badge']} ${styles['warn']}`}
+                >
+                  титул
+                </span>
+              </div>
+            </NavLink>
+            <NavLink to="/tasks" className={styles['home-module']}>
+              <div className={styles['home-module-icon']}>☑</div>
 
               <h4>Задачи</h4>
 
-              <p>Контроль поручений и дедлайнов.</p>
-            </button>
+              <p>Контроль поручений, дедлайнов и ответственных сотрудников.</p>
+              <div className={styles['home-module-meta']}>
+                <span className={styles['home-module-badge']}>0 текущих</span>
+              </div>
+            </NavLink>
+            <NavLink to="/tasks" className={styles['home-module']}>
+              <div className={styles['home-module-icon']}>👤</div>
+
+              <h4>Пользователи</h4>
+
+              <p>Роли, доступы, должности и отделы сотрудников платформы.</p>
+              <div className={styles['home-module-meta']}>
+                <span
+                  className={`${styles['home-module-badge']} ${styles['warn']}`}
+                >
+                  Администрирование
+                </span>
+              </div>
+            </NavLink>
           </div>
         </div>
 
-        <div className="home-card home-tasks-card">
-          <div className="home-card-head">
+        <div className={`${styles['home-card']} ${styles['home-tasks-card']}`}>
+          <div className={styles['home-card-head']}>
             <div>
               <h3>Текущие задачи</h3>
 
-              <p className="home-card-sub">Ближайшие дедлайны</p>
+              <p className={styles['home-card-sub']}>
+                Список активных задач и ближайших дедлайнов в компактном
+                формате.
+              </p>
             </div>
+            <NavLink className={styles['small-btn']} to="/tasks">
+              Открыть все
+            </NavLink>
           </div>
 
-          <div className="home-task-list">
-            <div className="home-task-item">
-              <div className="home-task-title">Загрузка задач будет здесь</div>
+          <div className={styles['home-task-list']}>
+            <div className={`${styles['home-task-item']} ${'skeleton'}`}>
+              <div className={styles['home-task-title']}>
+                Загрузка текущих задач
+              </div>
 
-              <div className="home-task-text">
+              <div className={styles['home-task-text']}>
                 После подключения API появятся реальные данные.
               </div>
             </div>

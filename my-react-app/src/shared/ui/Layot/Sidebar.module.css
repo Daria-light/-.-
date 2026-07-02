@@ -1,0 +1,210 @@
+.sidebar {
+  background: linear-gradient(180deg, var(--nav), #120845 70%, #0e0736);
+  color: #fff;
+
+  padding: 28px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 0;
+
+  height: 100vh;
+
+  width: 15rem;
+
+  box-shadow: 20px 0 50px rgba(22, 11, 79, 0.22);
+}
+.sidebarTitle {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  align-items: center;
+}
+
+.brand-mark {
+  color: #fff;
+  width: 2rem;
+  height: 2.5rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+}
+
+.sidebarTitleIcon {
+  height: 2.5rem;
+  width: 1.3rem;
+  margin-right: 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+}
+
+.sidebarTitleH2 {
+  color: var(--card);
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+}
+
+.sidebarItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebarItem {
+  height: 2.65rem;
+  display: block;
+  font-size: 0.85rem;
+  color: var(--violet-1);
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 1rem 1rem;
+
+  border-radius: 14px;
+
+  font-weight: 600;
+
+  transition: all 0.2 ease;
+}
+
+/* Наведение */
+
+.sidebarItem:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+}
+
+/* Активная страница */
+
+.sidebarItem.active {
+  background: linear-gradient(135deg, var(--violet), var(--violet-2));
+
+  color: #fff;
+
+  box-shadow: 0 12px 26px rgba(103, 82, 245, 0.38);
+}
+
+/* Небольшой эффект нажатия */
+
+.sidebarItem:active {
+  transform: scale(0.98);
+}
+/* ===========================
+   <= 900px
+=========================== */
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 13rem;
+    padding: 24px 16px;
+  }
+
+  .sidebarTitleH2 {
+    font-size: 0.82rem;
+  }
+
+  .sidebarItem {
+    font-size: 0.8rem;
+    padding: 0.9rem;
+  }
+}
+
+/* ===========================
+   <= 700px
+=========================== */
+
+@media (max-width: 700px) {
+  .sidebar {
+    width: 82px;
+    padding: 20px 12px;
+    align-items: center;
+  }
+
+  .sidebarTitle {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+  }
+
+  .sidebarTitleH2 {
+    display: none;
+  }
+
+  .sidebarItems {
+    width: 100%;
+  }
+
+  .sidebarItem {
+    justify-content: center;
+    padding: 0;
+    height: 52px;
+    font-size: 0;
+  }
+
+  .sidebarItem svg,
+  .sidebarItem i {
+    font-size: 20px;
+  }
+
+  .sidebarItem span {
+    display: none;
+  }
+
+  .brand-mark {
+    margin: 0;
+  }
+
+  .sidebarTitleIcon {
+    margin: 0;
+  }
+}
+
+/* ===========================
+   <= 600px
+=========================== */
+
+@media (max-width: 600px) {
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    transition: left 0.25s ease;
+    z-index: 999;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebarTitle {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .sidebarTitleH2 {
+    display: block;
+  }
+
+  .sidebarItems {
+    width: 100%;
+  }
+
+  .sidebarItem {
+    justify-content: flex-start;
+    font-size: 0.85rem;
+    padding: 0 16px;
+  }
+
+  .sidebarItem span {
+    display: inline;
+  }
+}

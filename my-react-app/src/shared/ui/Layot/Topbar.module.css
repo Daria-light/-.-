@@ -1,0 +1,157 @@
+.topbar {
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(14px);
+}
+
+.topbarWrapper {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+
+  align-items: center;
+
+  padding: 24px;
+}
+
+.topbarTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.topbarTitleHeader {
+  font-weight: 900;
+  line-height: 1.2;
+  font-size: 2rem;
+}
+
+.topbarTitleParagraph {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.topbarFunction {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-left: 0;
+}
+
+.top-search {
+  width: 320px;
+  max-width: 100%;
+  height: 48px;
+
+  padding: 0 18px;
+
+  border-radius: 14px;
+
+  border: 1px solid var(--line);
+
+  background: rgba(255, 255, 255, 0.88);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.icon-btn {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+  border: 1px solid var(--line);
+
+  background: #fff;
+
+  box-shadow: var(--shadow-sm);
+
+  display: grid;
+  place-items: center;
+
+  color: var(--nav);
+
+  transition: 0.18s;
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+}
+
+.top-search {
+  height: 48px;
+  padding: 0 48px 0 18px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow-sm);
+  outline: none;
+}
+
+/* Ноутбуки */
+
+@media (max-width: 1200px) {
+  .topbarWrapper {
+    padding: 20px;
+  }
+
+  .top-search {
+    width: 240px;
+  }
+
+  .topbarTitleHeader {
+    font-size: 1.7rem;
+  }
+}
+
+/* Планшеты */
+
+@media (max-width: 900px) {
+  .topbarWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .topbarFunction {
+    width: 100%;
+  }
+
+  .top-search {
+    flex: 1;
+    width: auto;
+  }
+}
+
+/* Телефон */
+
+@media (max-width: 600px) {
+  .topbarWrapper {
+    padding: 16px;
+    gap: 18px;
+  }
+
+  .topbarTitleHeader {
+    font-size: 1.45rem;
+  }
+
+  .topbarTitleParagraph {
+    font-size: 0.85rem;
+  }
+
+  .topbarFunction {
+    flex-wrap: wrap;
+  }
+
+  .top-search {
+    width: 100%;
+    order: 3;
+  }
+
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+}

@@ -1,104 +1,118 @@
 import { NavLink } from 'react-router-dom'
-import './Sidebar.css'
+import styles from './Sidebar.module.css'
+
+const years = [2026, 2027, 2028, 2029]
 
 export default function Sidebar() {
   return (
-    <aside className="sidebar">
-      <div className="sidebarTitle">
-        <svg
-          className="sidebarTitleIcon"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          version="1.0"
-          id="Layer_1"
-          width="14"
-          height="14"
-          viewBox="0 0 64 64"
-          enable-background="new 0 0 64 64"
-          xml:space="preserve"
-        >
-          <g>
-            <path
-              fill="#ffffff"
-              d="M60,52H4c-2.211,0-4,1.789-4,4s1.789,4,4,4h56c2.211,0,4-1.789,4-4S62.211,52,60,52z"
-            />
-            <path
-              fill="#ffffff"
-              d="M60,8c0-2.211-1.789-4-4-4H8C5.789,4,4,5.789,4,8v40h56V8z"
-            />
-          </g>
-        </svg>
-        <h2 className="sidebarTitleH2">Мониторинг состояния объектов УДС</h2>
+    <aside className={styles['sidebar']}>
+      <div className={styles['sidebarTitle']}>
+        <h2 className={styles['brand-mark']}>▮</h2>
+        <h2 className={styles['sidebarTitleH2']}>
+          Мониторинг состояния объектов УДС
+        </h2>
       </div>
-      <nav className="sidebarItems">
+      <nav className={styles['sidebarItems']}>
         <NavLink
-          className="sidebarItem"
           className={({ isActive }) =>
-            isActive ? 'sidebarItem active' : 'sidebarItem'
+            isActive
+              ? `${styles['sidebarItem']} ${styles['active']}`
+              : styles['sidebarItem']
           }
           to="/"
         >
-          Главная
+          ◆ Главная
         </NavLink>
 
         <NavLink
-          className="sidebarItem"
           className={({ isActive }) =>
-            isActive ? 'sidebarItem active' : 'sidebarItem'
-          }
-          to="/acts"
-        >
-          Работа с актами
-        </NavLink>
-
-        <NavLink
-          className="sidebarItem"
-          className={({ isActive }) =>
-            isActive ? 'sidebarItem active' : 'sidebarItem'
-          }
-          to="/work-status"
-        >
-          Статус работ
-        </NavLink>
-
-        <NavLink
-          className="sidebarItem"
-          className={({ isActive }) =>
-            isActive ? 'sidebarItem active' : 'sidebarItem'
-          }
-          to="/titles"
-        >
-          Формирование ДК
-        </NavLink>
-
-        <NavLink
-          className="sidebarItem"
-          className={({ isActive }) =>
-            isActive ? 'sidebarItem active' : 'sidebarItem'
-          }
-          to="/tasks"
-        >
-          Задачи
-        </NavLink>
-
-        <NavLink
-          className="sidebarItem"
-          className={({ isActive }) =>
-            isActive ? 'sidebarItem active' : 'sidebarItem'
+            isActive
+              ? `${styles['sidebarItem']} ${styles['active']}`
+              : styles['sidebarItem']
           }
           to="/pdf"
         >
-          PDF
+          ⌂ Мониторинг объектов
         </NavLink>
 
         <NavLink
-          className="sidebarItem"
           className={({ isActive }) =>
-            isActive ? 'sidebarItem active' : 'sidebarItem'
+            isActive
+              ? `${styles['sidebarItem']} ${styles['active']}`
+              : styles['sidebarItem']
+          }
+          to="/acts"
+        >
+          □ Работа с актами
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? `${styles['sidebarItem']} ${styles['active']}`
+              : styles['sidebarItem']
+          }
+          to="/work-status"
+        >
+          ▤ Статусы работ
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? `${styles['sidebarItem']} ${styles['active']}`
+              : styles['sidebarItem']
+          }
+          to="/titles"
+        >
+          ◫ Формирование ДК
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? `${styles['sidebarItem']} ${styles['active']}`
+              : styles['sidebarItem']
+          }
+          to="/tasks"
+        >
+          ☑ Задачи
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? `${styles['sidebarItem']} ${styles['active']}`
+              : styles['sidebarItem']
+          }
+          to="/cards-title"
+        >
+          ▥ Карточки по титулу
+        </NavLink>
+        <div className="sidebar-years">
+          {years.map((year) => (
+            <NavLink
+              key={year}
+              to={`/cards-title/${year}`}
+              className={({ isActive }) =>
+                isActive
+                  ? `${styles['sidebarItem']} ${styles['active']}`
+                  : styles['sidebarItem']
+              }
+            >
+              {year}
+            </NavLink>
+          ))}
+        </div>
+
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? `${styles['sidebarItem']} ${styles['active']}`
+              : styles['sidebarItem']
           }
           to="/users"
         >
-          Пользователи
+          👤 Пользователи
         </NavLink>
       </nav>
     </aside>

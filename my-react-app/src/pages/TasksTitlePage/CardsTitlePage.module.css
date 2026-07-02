@@ -1,0 +1,603 @@
+.title-main-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  padding: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f2f0ff 52%, #eefbff 100%);
+  border: 1px solid rgba(222, 226, 244, 0.95);
+  box-shadow: var(--shadow);
+}
+
+.title-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.title-dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.title-current-year {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 7px 11px;
+  color: #5740d9;
+  font-weight: 900;
+  font-size: 12px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.title-readiness-card {
+  border-radius: 30px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-readiness-card-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-readiness-card:before {
+  content: '';
+  position: absolute;
+  inset: auto -40px -70px auto;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: rgba(72, 214, 210, 0.13);
+}
+
+.title-readiness-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.title-readiness-meta-span {
+  font-weight: 700;
+  display: block;
+}
+
+.title-readiness-meta div {
+  border-radius: 16px;
+  background: #f8f9fd;
+  border: 1px solid var(--line);
+  padding: 10px;
+}
+
+.title-readiness-donut {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: conic-gradient(var(--violet) 0deg, #eef1f7 0deg 360deg);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.title-readiness-donut:after {
+  content: '';
+  position: absolute;
+  inset: 24px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.title-readiness-center {
+  position: relative;
+  z-index: 2; /* поднимаем текст выше ::after */
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.title-readiness-center span {
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--muted);
+}
+
+.title-readiness-center b {
+  font-size: 30px;
+  line-height: 1rem;
+  color: #15123f;
+}
+
+.title-filters {
+  display: grid;
+  grid-template-columns: 1fr 210px 240px 220px 180px;
+  gap: 12px;
+}
+
+.title-year-chip.active {
+  background: linear-gradient(135deg, var(--violet), var(--violet-2));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 18px 34px rgba(103, 82, 245, 0.3);
+}
+.title-year-chip {
+  border: 1px solid #e2defd;
+  background: #fff;
+  border-radius: 18px;
+  padding: 13px 12px;
+  cursor: pointer;
+  font-weight: 950;
+  color: #5740d9;
+  box-shadow: 0 10px 22px rgba(34, 29, 84, 0.06);
+  transition: 0.16s;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-year-chip.active:before {
+  background: rgba(255, 255, 255, 0.75);
+}
+.title-year-chip:before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 7px;
+  height: 3px;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.title-year-switch {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(72px, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+  position: relative;
+  z-index: 1;
+}
+.title-stat-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(145px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.title-stat-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.title-stat-card span {
+  display: block;
+}
+
+.title-top-tools {
+  display: grid;
+  gap: 16px;
+}
+
+.title-justification-panel {
+  border-radius: 26px;
+  background: linear-gradient(135deg, #ffffff, #f4f7ff);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.title-justification-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.title-justification-status {
+  border: 1px solid var(--line);
+  background: #f8f9fd;
+  border-radius: 16px;
+  padding: 12px 14px;
+  color: #424866;
+  font-size: 13px;
+  line-height: 1.45;
+  min-height: 44px;
+}
+.title-workspace {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.72fr) minmax(520px, 1.28fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.title-template-panel {
+  background: linear-gradient(135deg, #ffffff, #f7f8ff);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.empty {
+  padding: 42px;
+  text-align: center;
+  color: var(--muted);
+  background: #fff;
+  border-radius: 20px;
+  border: 1px dashed var(--line);
+}
+
+.title-empty {
+  grid-column: 1 / -1;
+}
+.title-template-empty {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+.title-template-head p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.title-card-skeleton {
+  height: 10rem;
+}
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .title-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .title-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .title-stat-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .title-filters {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .title-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .title-stat-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .title-justification-head {
+    flex-direction: column;
+  }
+
+  .title-justification-actions {
+    width: 100%;
+  }
+
+  .title-justification-actions button {
+    flex: 1;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title-main-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .title-main-card h2 {
+    font-size: 22px;
+  }
+
+  .title-main-card p {
+    font-size: 14px;
+  }
+
+  .title-dashboard {
+    gap: 14px;
+  }
+
+  .title-readiness-card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .title-readiness-donut {
+    width: 120px;
+    height: 120px;
+  }
+
+  .title-readiness-donut::after {
+    inset: 18px;
+  }
+
+  .title-readiness-center b {
+    font-size: 24px;
+  }
+
+  .title-readiness-center span {
+    font-size: 10px;
+  }
+
+  .title-readiness-meta div .title-readiness-meta-span {
+    font-size: 16px;
+  }
+
+  .title-year-switch {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .title-year-chip {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 14px;
+  }
+
+  .title-stat-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .title-stat-card {
+    padding: 12px;
+  }
+
+  .title-stat-card b {
+    font-size: 20px;
+  }
+
+  .title-filters {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .title-top-tools {
+    gap: 12px;
+  }
+
+  .title-justification-panel {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .title-justification-head h3 {
+    font-size: 16px;
+  }
+
+  .title-justification-actions {
+    flex-direction: column;
+  }
+
+  .title-justification-actions button {
+    width: 100%;
+  }
+
+  .title-workspace {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .title-template-panel {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .title-template-head h3 {
+    font-size: 16px;
+  }
+
+  .title-card-skeleton {
+    height: 8rem;
+  }
+
+  .empty {
+    padding: 24px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-main-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .title-main-card h2 {
+    font-size: 18px;
+  }
+
+  .title-main-card p {
+    font-size: 13px;
+  }
+
+  .title-current-year {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .title-readiness-card {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .title-readiness-donut {
+    width: 100px;
+    height: 100px;
+  }
+
+  .title-readiness-donut::after {
+    inset: 14px;
+  }
+
+  .title-readiness-center b {
+    font-size: 20px;
+  }
+
+  .title-readiness-center span {
+    font-size: 9px;
+  }
+
+  .title-readiness-meta {
+    gap: 6px;
+  }
+
+  .title-readiness-meta div {
+    padding: 8px;
+  }
+
+  .title-readiness-meta div .title-readiness-meta-span {
+    font-size: 14px;
+  }
+
+  .title-year-switch {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .title-year-chip {
+    padding: 8px 10px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+
+  .title-stat-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .title-stat-card {
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .title-stat-card span {
+    font-size: 11px;
+  }
+
+  .title-stat-card b {
+    font-size: 18px;
+    margin-top: 4px;
+  }
+
+  .title-filters {
+    gap: 8px;
+  }
+
+  .title-filters input,
+  .title-filters .react-select__control {
+    font-size: 13px;
+  }
+
+  .title-justification-panel {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .title-justification-head h3 {
+    font-size: 14px;
+  }
+
+  .title-justification-head p {
+    font-size: 12px;
+  }
+
+  .title-justification-status {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .title-template-panel {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .title-template-head h3 {
+    font-size: 14px;
+  }
+
+  .title-template-head p {
+    font-size: 12px;
+  }
+
+  .title-template-empty {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .title-card-skeleton {
+    height: 6rem;
+  }
+
+  .empty {
+    padding: 18px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .title-main-card h2 {
+    font-size: 16px;
+  }
+
+  .title-stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .title-year-switch {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .title-year-chip {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .title-readiness-donut {
+    width: 80px;
+    height: 80px;
+  }
+
+  .title-readiness-donut::after {
+    inset: 12px;
+  }
+
+  .title-readiness-center b {
+    font-size: 16px;
+  }
+}
