@@ -242,6 +242,45 @@
 
   color: var(--muted);
 }
+.objectCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 16px;
+
+  margin-bottom: 12px;
+
+  border-radius: 16px;
+
+  background: white;
+
+  border: 1px solid var(--line);
+
+  transition: 0.2s;
+}
+
+.objectCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.objectCard h4 {
+  margin: 0;
+
+  color: #15123f;
+}
+
+.objectCard p {
+  margin: 0;
+
+  color: var(--muted);
+}
+
+.selected {
+  border: 2px solid var(--violet);
+  background: #f4f2ff;
+}
 
 @media (max-width: 1100px) {
   .acts-grid,

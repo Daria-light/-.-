@@ -7,14 +7,14 @@ function PdfPage() {
     <>
       <section id="monitoringTab" className={['panel']}>
         <div className={styles['filters']}>
-          <AppSelect id="geometryFilter"></AppSelect>
-          <AppSelect id="actFilter"></AppSelect>
-          <AppSelect id="uploadFilter"></AppSelect>
-          <AppSelect id="aisUpdateFilter"></AppSelect>
-          <AppSelect id="cardFilter"></AppSelect>
-          <AppSelect id="programFilter"></AppSelect>
-          <AppSelect id="executorFilter"></AppSelect>
-          <AppSelect id="contractorFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="geometryFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="actFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="uploadFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="aisUpdateFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="cardFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="programFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="executorFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="contractorFilter"></AppSelect>
         </div>
         <div className={styles['search-row']}>
           <input
@@ -22,7 +22,7 @@ function PdfPage() {
             placeholder="Поиск объекта по наименованию"
             className={styles['search-input']}
           />
-          <AppSelect id="districtFilter"></AppSelect>
+          <AppSelect placeholder="Выбрать..." id="districtFilter"></AppSelect>
 
           <button
             className={['main-btn']}

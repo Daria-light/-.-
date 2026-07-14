@@ -1,55 +1,135 @@
 import React from 'react'
 import styles from './TitlesPage.module.css'
 import AppSelect from '../../shared/ui/AppSelect/AppSelect'
+import { useState, useEffect } from 'react'
 
 const source = [{ value: '', label: 'Источники' }]
 
 const state = [{ value: '', label: 'Состояния' }]
 
 function TitlesPage() {
+  const years = [2026, 2027, 2028, 2029]
+
+  const [selectedYear, setSelectedYear] = useState(2026)
+
+  const [roadmapItems, setRoadmapItems] = useState([])
+
+  const [stats, setStats] = useState({
+    total: 0,
+    update: 0,
+    delete: 0,
+    add: 0,
+    ready: 0,
+  })
+  const loadRoadmap = async (year) => {
+    /*
+    Backend
+
+    POST /api/v1/objects/find
+
+    filter:
+    {
+        "$year":{
+            "is":year
+        }
+    }
+
+    Затем при необходимости:
+
+    POST /api/v1/works/hard/find
+
+    или
+
+    POST /api/v1/works/regular.find
+
+    Далее объединить данные и вывести.
+  */
+
+    const total = Math.floor(Math.random() * 300 + 200)
+
+    const update = Math.floor(Math.random() * 50)
+
+    const remove = Math.floor(Math.random() * 20)
+
+    const add = Math.floor(Math.random() * 30)
+
+    setStats({
+      total,
+      update,
+      delete: remove,
+      add,
+      ready: Math.floor(((total - update) / total) * 100),
+    })
+
+    setRoadmapItems(
+      Array.from({ length: 10 }, (_, index) => ({
+        id: index + 1,
+        name: `${year} • Объект №${index + 1}`,
+        odx: `ODX-${year}-${1000 + index}`,
+        status: ['Актуально', 'Добавить', 'Исключить'][
+          Math.floor(Math.random() * 3)
+        ],
+      })),
+    )
+  }
+
+  useEffect(() => {
+    // POST /api/v1/objects/find
+    // POST /api/v1/works/hard/find
+    // POST /api/v1/works/regular/find
+
+    // setRoadmapItems(response.data.items)
+    // setStats(calculateStats(response.data.items))
+
+    loadRoadmap(selectedYear)
+  }, [selectedYear])
   return (
     <div className={styles['roadmap-panel']}>
       <div className={styles['roadmap-hero']}>
         <div className={styles['roadmap-main-card']}>
-          <div className={styles['roadmap-year']}>Выбранный год: 2026</div>
+          <div className={styles['roadmap-year']}>
+            Выбранный год: {selectedYear}
+          </div>
 
           <h2>Формирование дорожной карты</h2>
 
           <p>Сравнение листов ДК и листов обновления.</p>
 
           <div className={styles['roadmap-years']}>
-            <button
-              className={`${styles['title-year-chip']} ${styles['active']}`}
-            >
-              2026
-            </button>
-
-            <button className={styles['title-year-chip']}>2027</button>
-
-            <button className={styles['title-year-chip']}>2028</button>
-
-            <button className={styles['title-year-chip']}>2029</button>
+            {years.map((year) => (
+              <button
+                key={year}
+                onClick={() => setSelectedYear(year)}
+                className={
+                  selectedYear === year
+                    ? `${styles['title-year-chip']} ${styles['active']}`
+                    : styles['title-year-chip']
+                }
+              >
+                {year}
+              </button>
+            ))}
           </div>
 
           <div className={styles['roadmap-stats']}>
             <div className={styles['title-stat-card']}>
               <span>Всего</span>
-              <b>458</b>
+              <b>{stats.total}</b>
             </div>
 
             <div className={`${styles['title-stat-card']} ${styles['warn']}`}>
               <span>Актуализация</span>
-              <b>36</b>
+              <b>{stats.update}</b>
             </div>
 
             <div className={`${styles['title-stat-card']} ${styles['danger']}`}>
               <span>Исключить</span>
-              <b>12</b>
+              <b>{stats.delete}</b>
             </div>
 
             <div className={`${styles['title-stat-card']} ${styles['good']}`}>
               <span>Добавить</span>
-              <b>18</b>
+              <b>{stats.add}</b>
             </div>
           </div>
         </div>
@@ -61,7 +141,7 @@ function TitlesPage() {
               id="roadmapReadinessDonut"
             >
               <div className={styles['title-readiness-center']}>
-                <b id="roadmapReadyPercent">0%</b>
+                <b id="roadmapReadyPercent">{stats.ready}%</b>
                 <span>готово</span>
               </div>
             </div>
@@ -69,11 +149,11 @@ function TitlesPage() {
           <div className={styles['title-readiness-meta']}>
             <div>
               <span>Осталось обработать</span>
-              <b id="roadmapNeedWorkCount">0</b>
+              <b id="roadmapNeedWorkCount">{stats.update}</b>
             </div>
             <div>
               <span>Всего за год</span>
-              <b id="roadmapReadinessTotal">0</b>
+              <b id="roadmapReadinessTotal">{stats.total}</b>
             </div>
           </div>
         </div>
@@ -112,14 +192,28 @@ function TitlesPage() {
       </div>
 
       <div className={styles['roadmap-list']}>
-        {[1, 2, 3].map((item) => (
-          <div className={styles['roadmap-card']} key={item}>
+        {roadmapItems.map((item) => (
+          <div className={styles['roadmap-card']} key={item.odx}>
             <div>
-              <h4>ул. Ленина {item}</h4>
-              <p>ID ODX 12345</p>
+              <h4>{item.name}</h4>
+
+              <p>{item.odx}</p>
+
+              <span>{item.status}</span>
             </div>
 
-            <span className={styles['roadmap-badge']}>Актуально</span>
+            <span
+              className={`${styles.roadmapBadge}
+    ${
+      item.status === 'Добавить'
+        ? styles.good
+        : item.status === 'Исключить'
+          ? styles.danger
+          : styles.warn
+    }`}
+            >
+              {item.status}
+            </span>
           </div>
         ))}
       </div>

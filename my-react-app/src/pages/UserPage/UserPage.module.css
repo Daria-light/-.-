@@ -49,8 +49,15 @@
 
 .users-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
   gap: 20px;
+}
+
+.user-form,
+.users-list,
+.users-hero {
+  min-width: 0;
 }
 
 .user-form,
@@ -159,9 +166,56 @@
   font-size: 12px;
 }
 
+.login-title {
+}
+
+.login-panel {
+  color: var(--muted);
+
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  width: 30vw;
+  margin: 1rem auto 0 auto;
+}
+
+.login-wrapper {
+  text-align: center;
+
+  margin: 0 auto;
+  background-color: white;
+
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 50%;
+}
+
+.users-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.errorInput {
+  border: 1px solid #dc3545 !important;
+  background: #fff5f5;
+
+  transition: 0.2s;
+}
+
 @media (max-width: 1100px) {
   .users-grid {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 1100px) {
+  .login-wrapper {
+    margin: 0;
+    width: 100%;
+  }
+  .login-panel {
+    width: 100%;
   }
 }
 

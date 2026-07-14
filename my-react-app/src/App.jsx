@@ -7,25 +7,78 @@ import DashboardPage from './pages/DashboardPage/DashdoardPage'
 import WorkStatusPage from './pages/WorkStatusPage/WorkStatusPage'
 import LayoutPage from './pages/LayoutPage/LayoutPage.jsx'
 import CardsTitlePage from './pages/TasksTitlePage/CardsTitlePage.jsx'
+import AuthProvider from './shared/context/AuthContext'
+import ProtectedRoute from './shared/routes/ProtectedRoute.jsx'
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<LayoutPage />}>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/work-status" element={<WorkStatusPage />} />
-          <Route path="/titles" element={<TitlesPage />} />
-          <Route path="/tasks" element={<TasksPage />} />
-          <Route path="/users" element={<UserPage />} />
-          <Route path="/acts" element={<ActPage />} />
-          <Route path="/pdf" element={<PdfPage />} />
-          <Route path="/cards-title" element={<CardsTitlePage />} />
-          <Route path="/cards-title/:year" element={<CardsTitlePage />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route element={<LayoutPage />}>
+            <Route path="/" element={<DashboardPage />} />
+            <Route
+              path="/work-status"
+              element={
+                <ProtectedRoute roles={['admin', 'viewer']}>
+                  <WorkStatusPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/titles"
+              element={
+                <ProtectedRoute roles={['admin', 'viewer']}>
+                  <TitlesPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tasks"
+              element={
+                <ProtectedRoute roles={['admin', 'viewer']}>
+                  <TasksPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/users" element={<UserPage />} />
+            <Route
+              path="/acts"
+              element={
+                <ProtectedRoute roles={['admin', 'viewer']}>
+                  <ActPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pdf"
+              element={
+                <ProtectedRoute roles={['admin', 'viewer']}>
+                  <PdfPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cards-title"
+              element={
+                <ProtectedRoute roles={['admin', 'viewer']}>
+                  <CardsTitlePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cards-title/:year"
+              element={
+                <ProtectedRoute roles={['admin', 'viewer']}>
+                  <CardsTitlePage />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   )
 }

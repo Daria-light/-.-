@@ -1,7 +1,127 @@
 import React from 'react'
 import styles from './ActPage.module.css'
+import { useState, useEffect } from 'react'
 
 function ActPage() {
+  const [search, setSearch] = useState('')
+  const [filteredObjects, setFilteredObjects] = useState([])
+  const [selectedObjects, setSelectedObjects] = useState([])
+
+  const [objects, setObjects] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  const toggleObject = (id) => {
+    setSelectedObjects((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+    )
+  }
+  const selectAll = () => {
+    setSelectedObjects(filteredObjects.map((item) => item.id))
+  }
+
+  const clearSelection = () => {
+    setSelectedObjects([])
+  }
+
+  const loadObjects = async () => {
+    setLoading(true)
+
+    /*
+    Backend
+
+    POST /api/v1/objects/find
+
+    body:
+    {
+      columns: [],
+      filter: {},
+      limit: 100,
+      offset: 0,
+      sorting_by: "name",
+      descending_order: false
+    }
+
+    const response = await findObjects(...)
+
+    setObjects(response.data.items)
+  */
+
+    setTimeout(() => {
+      setObjects([
+        {
+          id: 1,
+          name: 'Ленинский проспект',
+          district: 'ЮЗАО',
+          acts: 12,
+        },
+        {
+          id: 2,
+          name: 'Проспект Вернадского',
+          district: 'ЗАО',
+          acts: 7,
+        },
+        {
+          id: 3,
+          name: 'Кутузовский проспект',
+          district: 'ЗАО',
+          acts: 21,
+        },
+      ])
+
+      setLoading(false)
+    }, 500)
+  }
+  useEffect(() => {
+    loadObjects()
+  }, [])
+  useEffect(() => {
+    /*
+POST /api/v1/objects/find
+
+{
+    columns: [],
+    filter: {
+        "$name": {
+            "like": `%${search}%`
+        }
+    },
+    limit:100,
+    offset:0
+}
+
+const response = await findObjects(...)
+
+setFilteredObjects(response.data.items)
+*/
+
+    /*
+POST
+
+/api/v1/file-list/add
+
+или
+
+/api/v1/meta-list/add
+
+или другой endpoint формирования акта
+
+body
+
+{
+    object_ids: selectedObjects
+}
+*/
+    if (!search.trim()) {
+      setFilteredObjects(objects)
+      return
+    }
+
+    setFilteredObjects(
+      objects.filter((object) =>
+        object.name.toLowerCase().includes(search.toLowerCase()),
+      ),
+    )
+  }, [search, objects])
   return (
     <div className={styles['acts-panel']}>
       <section className={styles['acts-hero']}>
@@ -47,22 +167,42 @@ function ActPage() {
           <h3>Формирование акта</h3>
 
           <div className={styles['acts-create']}>
-            <input placeholder="Поиск объектов для формирования актов" />
+            <input
+              placeholder="Поиск объектов для формирования актов"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
 
             <div className={styles['act-selected-panel']}>
-              <span>Выбрано объектов: 0</span>
+              <span>Выбрано объектов: {selectedObjects.length}</span>
 
               <div className={styles['act-mini-actions']}>
-                <button className={['small-btn']}>Выбрать найденные</button>
+                <button className={['small-btn']} onClick={selectAll}>
+                  Выбрать найденные
+                </button>
 
-                <button className={['small-btn']}>Снять выбор</button>
+                <button className={['small-btn']} onClick={clearSelection}>
+                  Снять выбор
+                </button>
               </div>
             </div>
 
             <div className={styles['act-list']}>
-              <div className={styles['label']}>Здесь будет список объектов</div>
+              {loading ? (
+                <div className={`${styles.label} skeleton`}>
+                  Загрузка объектов...
+                </div>
+              ) : (
+                objects.map((object) => (
+                  <div
+                    key={object.id}
+                    onClick={() => toggleObject(object.id)}
+                    className={`${styles.objectCard}
+        ${selectedObjects.includes(object.id) ? styles.selected : ''}`}
+                  ></div>
+                ))
+              )}
             </div>
-
             <button className={['main-btn']}>Сформировать акт</button>
 
             <button className={['main-btn'] + ' ' + ['secondary']}>

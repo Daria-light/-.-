@@ -1,0 +1,82 @@
+.card {
+  background: white;
+  border-radius: 1.4rem;
+  padding: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  grid-column: span 4;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.card h3 {
+  margin: 0;
+
+  font-size: 1.2rem;
+
+  color: #15123f;
+
+  text-align: center;
+}
+
+.card p {
+  margin: 0;
+
+  color: var(--muted);
+
+  text-align: center;
+
+  font-size: 14px;
+}
+
+.circleWrapper {
+  position: relative;
+
+  width: 140px;
+  height: 140px;
+}
+
+svg {
+  transform: rotate(-90deg);
+}
+
+.background {
+  fill: none;
+
+  stroke: #eceef8;
+
+  stroke-width: 10;
+}
+
+.progress {
+  fill: none;
+
+  stroke-width: 10;
+
+  stroke-linecap: round;
+
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.value {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 28px;
+
+  font-weight: 800;
+
+  color: #15123f;
+}

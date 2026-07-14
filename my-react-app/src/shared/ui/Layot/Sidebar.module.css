@@ -97,6 +97,31 @@
 .sidebarItem:active {
   transform: scale(0.98);
 }
+
+.menuButton {
+  display: none;
+
+  position: fixed;
+
+  top: 18px;
+  left: 18px;
+
+  width: 46px;
+  height: 46px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #24145d;
+  color: white;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  z-index: 1200;
+}
+
 /* ===========================
    <= 900px
 =========================== */
@@ -114,56 +139,6 @@
   .sidebarItem {
     font-size: 0.8rem;
     padding: 0.9rem;
-  }
-}
-
-/* ===========================
-   <= 700px
-=========================== */
-
-@media (max-width: 700px) {
-  .sidebar {
-    width: 82px;
-    padding: 20px 12px;
-    align-items: center;
-  }
-
-  .sidebarTitle {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 10px;
-  }
-
-  .sidebarTitleH2 {
-    display: none;
-  }
-
-  .sidebarItems {
-    width: 100%;
-  }
-
-  .sidebarItem {
-    justify-content: center;
-    padding: 0;
-    height: 52px;
-    font-size: 0;
-  }
-
-  .sidebarItem svg,
-  .sidebarItem i {
-    font-size: 20px;
-  }
-
-  .sidebarItem span {
-    display: none;
-  }
-
-  .brand-mark {
-    margin: 0;
-  }
-
-  .sidebarTitleIcon {
-    margin: 0;
   }
 }
 
@@ -206,5 +181,10 @@
 
   .sidebarItem span {
     display: inline;
+  }
+  .menuButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

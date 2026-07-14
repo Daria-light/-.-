@@ -1,5 +1,10 @@
 import React from 'react'
 import styles from './WorkStatusPage.module.css'
+import AppSelect from '../../shared/ui/AppSelect/AppSelect'
+
+const makerOptions = [{ value: '', label: 'Исполнитель' }]
+
+const statusOptions = [{ value: '', label: 'Статус' }]
 
 function WorkStatusPage() {
   return (
@@ -52,13 +57,12 @@ function WorkStatusPage() {
         <div className={styles['work-filters']}>
           <input placeholder="Поиск..." />
 
-          <select>
-            <option>Исполнитель</option>
-          </select>
+          <AppSelect
+            placeholder="Исполнитель"
+            options={makerOptions}
+          ></AppSelect>
 
-          <select>
-            <option>Статус</option>
-          </select>
+          <AppSelect placeholder="Статус" options={statusOptions}></AppSelect>
 
           <label className={styles['work-update-filter']}>
             <input type="checkbox" />

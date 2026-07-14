@@ -521,6 +521,59 @@
   font-size: 11px;
 }
 
+.homeTaskList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.homeTaskItem {
+  background: white;
+  border: 1px solid #e5e8f3;
+  border-radius: 16px;
+  padding: 14px;
+  transition: 0.2s;
+}
+
+.homeTaskItem:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.homeTaskHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.homeTaskTitle {
+  font-weight: 700;
+  color: #15123f;
+}
+
+.homeTaskDeadline {
+  font-size: 13px;
+  color: var(--muted);
+}
+.priority {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.high {
+  background: #ef4444;
+}
+
+.medium {
+  background: #f59e0b;
+}
+
+.low {
+  background: #22c55e;
+}
+
 @media (max-width: 1200px) {
   .home-layout {
     grid-template-columns: 1fr;
