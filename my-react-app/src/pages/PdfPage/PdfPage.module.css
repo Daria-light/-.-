@@ -21,163 +21,680 @@
 } */
 
 .search-row {
-  display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
-  gap: 0.8rem;
-  margin-bottom: 1.2rem;
+   display: grid;
+   grid-template-columns: 3fr 1fr 1fr;
+   gap: 0.8rem;
+   margin-bottom: 1.2rem;
 }
 
 .charts {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.1rem;
+   display: grid;
+   grid-template-columns: repeat(5, minmax(180px, 1fr));
+   gap: 1rem;
+   margin-bottom: 1.1rem;
 }
 
 .chart-card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  box-shadow: var(--shadow-sm);
-  padding: 1.1rem;
-  min-height: 184px;
+   background: #fff;
+   border: 1px solid var(--line);
+   border-radius: 1rem;
+   box-shadow: var(--shadow-sm);
+   padding: 1.1rem;
+   min-height: 184px;
 }
 
 /* MOBILE */
 
 @media (max-width: 1300px) {
-  .tasks-toolbar,
-  .monitoring-filters {
-    grid-template-columns: 1fr;
-  }
+   .tasks-toolbar,
+   .monitoring-filters {
+      grid-template-columns: 1fr;
+   }
 
-  .monitoring-kpi-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
+   .monitoring-kpi-row {
+      grid-template-columns: repeat(2, 1fr);
+   }
 }
 
 @media (max-width: 760px) {
-  .monitoring-kpi-row {
-    grid-template-columns: 1fr;
-  }
+   .monitoring-kpi-row {
+      grid-template-columns: 1fr;
+   }
 
-  .tasks-grid,
-  .monitoring-cards {
-    grid-template-columns: 1fr;
-  }
+   .tasks-grid,
+   .monitoring-cards {
+      grid-template-columns: 1fr;
+   }
 
-  .task-form-grid {
-    grid-template-columns: 1fr;
-  }
+   .task-form-grid {
+      grid-template-columns: 1fr;
+   }
 
-  .monitoring-hero h2 {
-    font-size: 28px;
-  }
+   .monitoring-hero h2 {
+      font-size: 28px;
+   }
 }
 .field-select {
-  appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, #7d82a0 50%),
-    linear-gradient(135deg, #7d82a0 50%, transparent 50%);
-  background-position:
-    calc(100% - 18px) 51%,
-    calc(100% - 13px) 51%;
-  background-size:
-    5px 5px,
-    5px 5px;
-  background-repeat: no-repeat;
-  padding-right: 2rem;
+   appearance: none;
+   background-image:
+      linear-gradient(45deg, transparent 50%, #7d82a0 50%),
+      linear-gradient(135deg, #7d82a0 50%, transparent 50%);
+   background-position:
+      calc(100% - 18px) 51%,
+      calc(100% - 13px) 51%;
+   background-size:
+      5px 5px,
+      5px 5px;
+   background-repeat: no-repeat;
+   padding-right: 2rem;
 }
 
 /* БАЗОВЫЕ СТИЛИ ДЛЯ БОЛЬШИХ ЭКРАНОВ (DESKTOP) */
 .filters {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(150px, 1fr));
-  gap: 0.8rem;
-  margin-bottom: 0.8rem;
+   display: grid;
+   grid-template-columns: repeat(6, minmax(150px, 1fr));
+   gap: 0.8rem;
+   margin-bottom: 0.8rem;
 }
 
 .search-row {
-  display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
-  gap: 0.8rem;
-  margin-bottom: 1.2rem;
+   display: grid;
+   grid-template-columns: 3fr 1fr 1fr;
+   gap: 0.8rem;
+   margin-bottom: 1.2rem;
 }
 
 .charts {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.1rem;
+   display: grid;
+   grid-template-columns: repeat(5, minmax(180px, 1fr));
+   gap: 1rem;
+   margin-bottom: 1.1rem;
 }
 
 .chart-card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  box-shadow: var(--shadow-sm);
-  padding: 1.1rem;
-  min-height: 184px;
+   background: #fff;
+   border: 1px solid var(--line);
+   border-radius: 1rem;
+   box-shadow: var(--shadow-sm);
+   padding: 1.1rem;
+   min-height: 184px;
 }
 
 /* ТВОЙ СУЩЕСТВУЮЩИЙ АДАПТИВ + НОВЫЕ СЕТКИ */
 
 /* ПЛАНШЕТЫ (Экран меньше 1100px) */
 @media (max-width: 1300px) {
-  .tasks-toolbar,
-  .monitoring-filters {
-    grid-template-columns: 1fr;
-  }
+   .tasks-toolbar,
+   .monitoring-filters {
+      grid-template-columns: 1fr;
+   }
 
-  .monitoring-kpi-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
+   .monitoring-kpi-row {
+      grid-template-columns: repeat(2, 1fr);
+   }
 
-  /* Фильтры: делим на 3 колонки (вместо 6), чтобы текст не сжимался */
-  .filters {
-    grid-template-columns: repeat(3, 1fr);
-  }
+   /* Фильтры: делим на 3 колонки (вместо 6), чтобы текст не сжимался */
+   .filters {
+      grid-template-columns: repeat(3, 1fr);
+   }
 
-  /* Карточки/графики: перестраиваем в 2 или 3 колонки в зависимости от места */
-  .charts {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
+   /* Карточки/графики: перестраиваем в 2 или 3 колонки в зависимости от места */
+   .charts {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   }
 }
 
 /* СРЕДНИЕ ЭКРАНЫ / ТЕЛЕФОНЫ ГОРИЗОНТАЛЬНО (Меньше 900px) */
 @media (max-width: 900px) {
-  /* Строка поиска: выстраиваем элементы друг под другом для удобства ввода */
-  .search-row {
-    grid-template-columns: 1fr;
-  }
+   /* Строка поиска: выстраиваем элементы друг под другом для удобства ввода */
+   .search-row {
+      grid-template-columns: 1fr;
+   }
 }
 
 /* МОБИЛЬНЫЕ ТЕЛЕФОНЫ (Экран меньше 760px) */
 @media (max-width: 760px) {
-  .monitoring-kpi-row {
-    grid-template-columns: 1fr;
-  }
+   .monitoring-kpi-row {
+      grid-template-columns: 1fr;
+   }
 
-  .tasks-grid,
-  .monitoring-cards {
-    grid-template-columns: 1fr;
-  }
+   .tasks-grid,
+   .monitoring-cards {
+      grid-template-columns: 1fr;
+   }
 
-  .task-form-grid {
-    grid-template-columns: 1fr;
-  }
+   .task-form-grid {
+      grid-template-columns: 1fr;
+   }
 
-  .monitoring-hero h2 {
-    font-size: 28px;
-  }
+   .monitoring-hero h2 {
+      font-size: 28px;
+   }
 
-  /* Фильтры на мобилках: выстраиваем строго в 1 колонку */
-  .filters {
-    grid-template-columns: 1fr;
-  }
+   /* Фильтры на мобилках: выстраиваем строго в 1 колонку */
+   .filters {
+      grid-template-columns: 1fr;
+   }
 
-  /* Графики на мобилках: каждый график занимает всю ширину экрана */
-  .charts {
-    grid-template-columns: 1fr;
-  }
+   /* Графики на мобилках: каждый график занимает всю ширину экрана */
+   .charts {
+      grid-template-columns: 1fr;
+   }
+}
+
+/* PdfPage.module.css */
+
+.filters {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+   gap: 10px;
+   margin-bottom: 16px;
+}
+
+.search-row {
+   display: flex;
+   gap: 12px;
+   flex-wrap: wrap;
+   margin-bottom: 16px;
+   align-items: center;
+}
+
+.search-input {
+   flex: 1;
+   min-width: 200px;
+   padding: 10px 14px;
+   border: 1px solid var(--line, #e2e6f0);
+   border-radius: 12px;
+   font-size: 14px;
+   outline: none;
+   transition: 0.2s;
+}
+
+.search-input:focus {
+   border-color: #6c5ce7;
+   box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+}
+
+.charts {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   gap: 14px;
+   margin-bottom: 20px;
+}
+
+.chart-card {
+   background: #f8f9fd;
+   border: 1px solid var(--line, #e2e6f0);
+   border-radius: 16px;
+   padding: 16px;
+   text-align: center;
+}
+
+.chart-placeholder {
+   font-size: 14px;
+   color: #424866;
+}
+
+.chart-placeholder strong {
+   display: block;
+   font-size: 24px;
+   color: #15123f;
+   margin-bottom: 4px;
+}
+
+.cards {
+   min-height: 200px;
+}
+
+.cards-placeholder {
+   padding: 40px;
+   text-align: center;
+   color: #7a7f93;
+   background: #f8f9fd;
+   border-radius: 16px;
+   border: 1px dashed var(--line, #e2e6f0);
+}
+
+.cards-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+   gap: 14px;
+}
+
+.card-item {
+   background: #ffffff;
+   border: 1px solid var(--line, #e2e6f0);
+   border-radius: 16px;
+   padding: 16px 18px;
+   transition: 0.2s;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card-item:hover {
+   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+   border-color: #c8c4f0;
+}
+
+.card-item h4 {
+   margin: 0 0 8px;
+   font-size: 15px;
+   color: #15123f;
+   font-weight: 600;
+}
+
+.card-meta {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 10px;
+   flex-wrap: wrap;
+   margin-bottom: 8px;
+}
+
+.card-odx {
+   font-size: 12px;
+   color: #7a7f93;
+}
+
+.card-status {
+   font-size: 12px;
+   font-weight: 600;
+   padding: 3px 12px;
+   border-radius: 999px;
+}
+
+.status-work {
+   background: #fff3e0;
+   color: #e67e22;
+}
+
+.status-done {
+   background: #e8f5e9;
+   color: #2e7d32;
+}
+
+.status-plan {
+   background: #e3f2fd;
+   color: #1565c0;
+}
+
+.card-details {
+   display: flex;
+   gap: 16px;
+   font-size: 13px;
+   color: #424866;
+}
+
+.pager {
+   margin-top: 16px;
+   padding: 12px;
+   text-align: center;
+   color: #7a7f93;
+   font-size: 13px;
+   border-top: 1px solid var(--line, #e2e6f0);
+}
+
+@media (max-width: 768px) {
+   .filters {
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .search-row {
+      flex-direction: column;
+   }
+
+   .search-input {
+      width: 100%;
+   }
+
+   .charts {
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .cards-grid {
+      grid-template-columns: 1fr;
+   }
+}
+
+@media (max-width: 480px) {
+   .filters {
+      grid-template-columns: 1fr;
+   }
+
+   .charts {
+      grid-template-columns: 1fr;
+   }
+}
+
+/* PdfPage.module.css - добавляем */
+
+.filters {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+   gap: 10px;
+   margin-bottom: 16px;
+}
+
+.search-row {
+   display: flex;
+   gap: 12px;
+   flex-wrap: wrap;
+   margin-bottom: 16px;
+   align-items: center;
+}
+
+.search-input {
+   flex: 1;
+   min-width: 200px;
+   padding: 10px 14px;
+   border: 1px solid var(--line, #e2e6f0);
+   border-radius: 12px;
+   font-size: 14px;
+   outline: none;
+   transition: 0.2s;
+}
+
+.search-input:focus {
+   border-color: #6c5ce7;
+   box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+}
+
+.charts {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+   gap: 14px;
+   margin-bottom: 20px;
+}
+
+.chart-card {
+   background: #f8f9fd;
+   border: 1px solid var(--line, #e2e6f0);
+   border-radius: 16px;
+   padding: 16px;
+   text-align: center;
+}
+
+.chart-placeholder {
+   font-size: 13px;
+   color: #424866;
+}
+
+.chart-placeholder strong {
+   display: block;
+   font-size: 28px;
+   color: #15123f;
+   margin-bottom: 4px;
+}
+
+.cards {
+   min-height: 200px;
+}
+
+.cards-placeholder {
+   padding: 40px;
+   text-align: center;
+   color: #7a7f93;
+   background: #f8f9fd;
+   border-radius: 16px;
+   border: 1px dashed var(--line, #e2e6f0);
+}
+
+.cards-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+   gap: 14px;
+}
+
+.card-item {
+   background: #ffffff;
+   border: 1px solid var(--line, #e2e6f0);
+   border-radius: 16px;
+   padding: 16px 18px;
+   transition: 0.2s;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card-item:hover {
+   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+   border-color: #c8c4f0;
+}
+
+.card-item h4 {
+   margin: 0 0 8px;
+   font-size: 15px;
+   color: #15123f;
+   font-weight: 600;
+}
+
+.card-meta {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 10px;
+   flex-wrap: wrap;
+   margin-bottom: 8px;
+}
+
+.card-odx {
+   font-size: 12px;
+   color: #7a7f93;
+}
+
+.card-district {
+   font-size: 12px;
+   background: #eef1f7;
+   padding: 2px 10px;
+   border-radius: 999px;
+   color: #424866;
+}
+
+.card-statuses {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 6px;
+   margin-bottom: 8px;
+}
+
+.status-badge {
+   font-size: 11px;
+   padding: 2px 10px;
+   border-radius: 999px;
+   background: #f0f0f0;
+   color: #424866;
+}
+
+.status-good {
+   background: #e8f5e9;
+   color: #2e7d32;
+}
+
+.status-warn {
+   background: #fff3e0;
+   color: #e67e22;
+}
+
+.card-details {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 8px 16px;
+   font-size: 13px;
+   color: #424866;
+   margin-top: 8px;
+   padding-top: 8px;
+   border-top: 1px solid var(--line, #e2e6f0);
+}
+
+.card-details span {
+   font-size: 12px;
+}
+
+.text-good {
+   color: #2e7d32;
+}
+
+.text-warn {
+   color: #e67e22;
+}
+
+.card-area {
+   margin-top: 6px;
+   font-size: 12px;
+   color: #7a7f93;
+}
+
+.pager {
+   margin-top: 16px;
+   padding: 12px;
+   text-align: center;
+   color: #7a7f93;
+   font-size: 13px;
+   border-top: 1px solid var(--line, #e2e6f0);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+   .filters {
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .search-row {
+      flex-direction: column;
+   }
+
+   .search-input {
+      width: 100%;
+   }
+
+   .charts {
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .cards-grid {
+      grid-template-columns: 1fr;
+   }
+}
+
+@media (max-width: 480px) {
+   .filters {
+      grid-template-columns: 1fr;
+   }
+
+   .charts {
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .card-item {
+      padding: 14px;
+   }
+}
+
+.charts {
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 16px;
+   margin-bottom: 28px;
+}
+
+.chart-card {
+   background: #ffffff;
+   border: 1px solid #eef1f7;
+   border-radius: 16px;
+   padding: 18px 16px 16px; /* уменьшил нижний padding */
+   text-align: center;
+   transition: all 0.25s ease;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: auto; /* убрал фиксированную высоту */
+}
+
+.chart-card:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 24px rgba(108, 92, 231, 0.1);
+   border-color: #d5d0f0;
+}
+
+.chart-placeholder {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 2px;
+}
+
+.chart-placeholder strong {
+   font-size: 34px;
+   font-weight: 800;
+   color: #1a1a2e;
+   line-height: 1.1;
+   letter-spacing: -0.5px;
+}
+
+.chart-placeholder span {
+   font-size: 13px;
+   color: #7a7f93;
+   font-weight: 500;
+}
+
+/* Цвета для каждого квадратика */
+.chart-card:nth-child(1) .chart-placeholder strong {
+   color: #6c5ce7;
+}
+.chart-card:nth-child(2) .chart-placeholder strong {
+   color: #00b894;
+}
+.chart-card:nth-child(3) .chart-placeholder strong {
+   color: #fdcb6e;
+}
+.chart-card:nth-child(4) .chart-placeholder strong {
+   color: #e17055;
+}
+.chart-card:nth-child(5) .chart-placeholder strong {
+   color: #0984e3;
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+   .charts {
+      grid-template-columns: repeat(3, 1fr);
+   }
+}
+
+@media (max-width: 768px) {
+   .charts {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+   }
+
+   .chart-card {
+      padding: 18px 12px 16px;
+   }
+
+   .chart-placeholder strong {
+      font-size: 28px;
+   }
+
+   .chart-placeholder span {
+      font-size: 12px;
+   }
+}
+
+@media (max-width: 480px) {
+   .charts {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+   }
+
+   .chart-card {
+      padding: 14px 10px 12px;
+      border-radius: 12px;
+   }
+
+   .chart-placeholder strong {
+      font-size: 24px;
+   }
+
+   .chart-placeholder span {
+      font-size: 11px;
+   }
 }

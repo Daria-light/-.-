@@ -1,6 +1,4 @@
 // src/shared/api/index.js
-// Единая точка входа для всех API функций
-
 export { API_CONFIG, API_PATHS } from './config'
 export {
    apiClient,
@@ -29,6 +27,3 @@ export {
    districtsAPI,
    streetsAPI,
 } from './requestHandlers'
-
-// Хуки для работы с API (опционально)
-export * from './hooks'

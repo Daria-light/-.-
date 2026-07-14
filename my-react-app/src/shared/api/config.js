@@ -1,10 +1,10 @@
 // src/shared/api/config.js
 export const API_CONFIG = {
    // Базовый URL для API
-   BASE_URL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080',
+   BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080',
 
    // Флаг использования моков (true - моки, false - реальный API)
-   USE_MOCKS: process.env.REACT_APP_USE_MOCKS === 'true' || true, // по умолчанию true
+   USE_MOCKS: import.meta.env.VITE_USE_MOCKS === 'true' || true,
 
    // Таймаут запроса в мс
    TIMEOUT: 30000,
@@ -13,8 +13,8 @@ export const API_CONFIG = {
    BULK_LIMIT: 1000,
 
    // Токен для agent-auth (заглушка для разработки)
-   AGENT_LOGIN: process.env.REACT_APP_AGENT_LOGIN || 'agent',
-   AGENT_PASSWORD: process.env.REACT_APP_AGENT_PASSWORD || 'agent123',
+   AGENT_LOGIN: import.meta.env.VITE_AGENT_LOGIN || 'agent',
+   AGENT_PASSWORD: import.meta.env.VITE_AGENT_PASSWORD || 'agent123',
 }
 
 export const API_PATHS = {

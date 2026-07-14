@@ -76,7 +76,6 @@ export class ApiClient {
          const data = await response.json()
 
          if (!response.ok) {
-            // Если токен истек, пытаемся обновить
             if (response.status === 401 && requireAuth) {
                return await this.handleTokenRefresh(endpoint, body, options)
             }
@@ -113,7 +112,6 @@ export class ApiClient {
          })
       }
 
-      // Если уже идет обновление, добавляем запрос в очередь
       if (this.isRefreshing) {
          return new Promise((resolve, reject) => {
             this.pendingRequests.push({
@@ -140,13 +138,11 @@ export class ApiClient {
             refreshResponse.data.refreshToken,
          )
 
-         // Повторяем оригинальный запрос с новым токеном
          const result = await this.request(endpoint, body, {
             ...options,
             requireAuth: true,
          })
 
-         // Обрабатываем очередь ожидающих запросов
          this.pendingRequests.forEach((pending) => {
             this.request(pending.endpoint, pending.body, pending.options)
                .then(pending.resolve)
@@ -156,7 +152,6 @@ export class ApiClient {
 
          return result
       } catch (error) {
-         // Обрабатываем ошибки в очереди
          this.pendingRequests.forEach((pending) => {
             pending.reject(error)
          })
@@ -167,69 +162,12 @@ export class ApiClient {
          this.isRefreshing = false
       }
    }
-
-   // Утилиты для работы с API
-   async find(
-      endpoint,
-      filter = {},
-      columns = [],
-      limit = 100,
-      offset = 0,
-      sortingBy = '',
-      descendingOrder = false,
-   ) {
-      const body = {
-         columns: columns || [],
-         filter: filter || {},
-         limit: Math.min(limit, 1000),
-         offset: offset || 0,
-         sorting_by: sortingBy || '',
-         descending_order: descendingOrder || false,
-      }
-      return this.request(endpoint, body)
-   }
-
-   async add(endpoint, items) {
-      const data = Array.isArray(items) ? items : [items]
-      if (data.length > 1000) {
-         throw new ApiError({
-            title: 'Validation Error',
-            detail: `Too many items: ${data.length}. Maximum is 1000.`,
-            status: 400,
-         })
-      }
-      return this.request(endpoint, data)
-   }
-
-   async update(endpoint, items) {
-      const data = Array.isArray(items) ? items : [items]
-      if (data.length > 1000) {
-         throw new ApiError({
-            title: 'Validation Error',
-            detail: `Too many items: ${data.length}. Maximum is 1000.`,
-            status: 400,
-         })
-      }
-      return this.request(endpoint, data)
-   }
-
-   async delete(endpoint, ids) {
-      const data = Array.isArray(ids) ? ids : [ids]
-      if (data.length > 1000) {
-         throw new ApiError({
-            title: 'Validation Error',
-            detail: `Too many items: ${data.length}. Maximum is 1000.`,
-            status: 400,
-         })
-      }
-      return this.request(endpoint, data)
-   }
 }
 
 // Создаем экземпляр клиента
 export const apiClient = new ApiClient()
 
-// Утилита для обработки ответов
+// Утилиты для обработки ответов
 export function extractData(response) {
    return response?.data || null
 }
