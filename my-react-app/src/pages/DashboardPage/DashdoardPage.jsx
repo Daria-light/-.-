@@ -10,6 +10,7 @@ import {
    hardWorksAPI,
    regularWorksAPI,
 } from '../../shared/api'
+import { API_CONFIG } from '../../shared/api/config'
 
 function DashboardPage() {
    const { user } = useAuth()
@@ -28,6 +29,7 @@ function DashboardPage() {
       2027: { total: 0, needAction: 0, readyPercent: 0 },
    })
    const [loading, setLoading] = useState(true)
+   const [error, setError] = useState(null)
 
    useEffect(() => {
       loadDashboard()
@@ -35,8 +37,8 @@ function DashboardPage() {
 
    const loadDashboard = async () => {
       setLoading(true)
+      setError(null)
       try {
-         // Загружаем статистику и задачи
          const [objectsRes, hardWorksRes, regularWorksRes, tasksRes] =
             await Promise.all([
                objectsAPI.find({}, ['id'], 1, 0, 'id', false),
@@ -45,14 +47,12 @@ function DashboardPage() {
                tasksAPI.findAssigned(),
             ])
 
-         // Статистика
          setDashboardStats({
             geometry: Math.floor(Math.random() * 101),
             acts: Math.floor(Math.random() * 101),
             uploads: Math.floor(Math.random() * 101),
          })
 
-         // Задачи
          const tasksData = tasksRes.data.items || []
          setTasks(
             tasksData.slice(0, 3).map((task) => ({
@@ -92,9 +92,7 @@ function DashboardPage() {
             })
          }
 
-         // Загружаем данные для дорожных карт 2026 и 2027
          const [roadmap2026, roadmap2027] = await Promise.all([
-            // Для 2026 года
             Promise.all([
                hardWorksAPI.find({ year: { is: 2026 } }, [
                   'id',
@@ -124,7 +122,6 @@ function DashboardPage() {
                return { total, needAction, readyPercent }
             }),
 
-            // Для 2027 года
             Promise.all([
                hardWorksAPI.find({ year: { is: 2027 } }, [
                   'id',
@@ -158,32 +155,44 @@ function DashboardPage() {
          setRoadmapData({ 2026: roadmap2026, 2027: roadmap2027 })
       } catch (error) {
          console.error('Failed to load dashboard:', error)
-         // Fallback на мок-данные
-         setDashboardStats({
-            geometry: Math.floor(Math.random() * 101),
-            acts: Math.floor(Math.random() * 101),
-            uploads: Math.floor(Math.random() * 101),
-         })
-         setTasks([
-            {
-               id: 1,
-               name: 'Актуализировать статус объекта №142',
-               deadline: 'Сегодня',
-               priority: 'high',
-            },
-            {
-               id: 2,
-               name: 'Загрузить акты по району САО',
-               deadline: 'Завтра',
-               priority: 'medium',
-            },
-            {
-               id: 3,
-               name: 'Проверить карточки титула 2026',
-               deadline: '15 июля',
-               priority: 'low',
-            },
-         ])
+
+         // 👇 ЕСЛИ МОКИ ВЫКЛЮЧЕНЫ - ПОКАЗЫВАЕМ 0 И ОШИБКУ
+         if (!API_CONFIG.USE_MOCKS) {
+            setError('Ошибка загрузки данных. Проверьте подключение к серверу.')
+            setDashboardStats({ geometry: 0, acts: 0, uploads: 0 })
+            setTasks([])
+            setRoadmapData({
+               2026: { total: 0, needAction: 0, readyPercent: 0 },
+               2027: { total: 0, needAction: 0, readyPercent: 0 },
+            })
+         } else {
+            // Fallback на мок-данные (когда моки включены)
+            setDashboardStats({
+               geometry: Math.floor(Math.random() * 101),
+               acts: Math.floor(Math.random() * 101),
+               uploads: Math.floor(Math.random() * 101),
+            })
+            setTasks([
+               {
+                  id: 1,
+                  name: 'Актуализировать статус объекта №142',
+                  deadline: 'Сегодня',
+                  priority: 'high',
+               },
+               {
+                  id: 2,
+                  name: 'Загрузить акты по району САО',
+                  deadline: 'Завтра',
+                  priority: 'medium',
+               },
+               {
+                  id: 3,
+                  name: 'Проверить карточки титула 2026',
+                  deadline: '15 июля',
+                  priority: 'low',
+               },
+            ])
+         }
       } finally {
          setLoading(false)
       }
@@ -322,6 +331,8 @@ function DashboardPage() {
                         Подробнее →
                      </NavLink>
                   </div>
+               ) : error ? (
+                  <div className={styles['home-title-loading']}>{error}</div>
                ) : (
                   <div
                      className={`${styles['home-title-loading']} ${'skeleton'}`}
@@ -363,6 +374,8 @@ function DashboardPage() {
                         Подробнее →
                      </NavLink>
                   </div>
+               ) : error ? (
+                  <div className={styles['home-title-loading']}>{error}</div>
                ) : (
                   <div
                      className={`${styles['home-title-loading']} ${'skeleton'}`}
@@ -536,7 +549,7 @@ function DashboardPage() {
                            <div className="skeleton">Загрузка задач...</div>
                         ) : tasks.length === 0 ? (
                            <div className={styles.label}>
-                              Нет активных задач
+                              {error ? 'Нет задач' : 'Нет активных задач'}
                            </div>
                         ) : (
                            tasks.map((task) => (
@@ -546,9 +559,7 @@ function DashboardPage() {
                               >
                                  <div className={styles.homeTaskHeader}>
                                     <span
-                                       className={`${styles.priority} ${
-                                          styles[task.priority]
-                                       }`}
+                                       className={`${styles.priority} ${styles[task.priority]}`}
                                     />
 
                                     <span className={styles.homeTaskDeadline}>

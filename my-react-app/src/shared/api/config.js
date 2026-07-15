@@ -4,7 +4,7 @@ export const API_CONFIG = {
    BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080',
 
    // Флаг использования моков (true - моки, false - реальный API)
-   USE_MOCKS: import.meta.env.VITE_USE_MOCKS === 'true' || true,
+   USE_MOCKS: import.meta.env.VITE_USE_MOCKS === 'true' || false,
 
    // Таймаут запроса в мс
    TIMEOUT: 30000,

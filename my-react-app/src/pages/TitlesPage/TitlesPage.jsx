@@ -3,6 +3,7 @@ import styles from './TitlesPage.module.css'
 import AppSelect from '../../shared/ui/AppSelect/AppSelect'
 import { useState, useEffect } from 'react'
 import { hardWorksAPI, regularWorksAPI, objectsAPI } from '../../shared/api'
+import { API_CONFIG } from '../../shared/api/config'
 
 const sourceOptions = [
    { value: '', label: 'Источник: все' },
@@ -22,10 +23,11 @@ function TitlesPage() {
    const [selectedYear, setSelectedYear] = useState(2026)
    const [roadmapItems, setRoadmapItems] = useState([])
    const [filteredItems, setFilteredItems] = useState([])
-   const [loading, setLoading] = useState(false)
+   const [loading, setLoading] = useState(true)
    const [searchTerm, setSearchTerm] = useState('')
    const [sourceFilter, setSourceFilter] = useState('')
    const [stateFilter, setStateFilter] = useState('')
+   const [error, setError] = useState(null)
 
    const [stats, setStats] = useState({
       total: 0,
@@ -37,6 +39,7 @@ function TitlesPage() {
 
    const loadRoadmap = async (year) => {
       setLoading(true)
+      setError(null)
       try {
          console.log('🔄 Загрузка дорожной карты для года:', year)
 
@@ -62,6 +65,7 @@ function TitlesPage() {
 
          console.log('📊 hardWorks:', hardRes.data.items?.length || 0)
          console.log('📊 regularWorks:', regularRes.data.items?.length || 0)
+         console.log('📊 objects:', objectsRes.data.items?.length || 0)
 
          const objectsMap = {}
          objectsRes.data.items?.forEach((o) => {
@@ -93,6 +97,8 @@ function TitlesPage() {
 
          const allItems = [...hardItems, ...regularItems]
          console.log('📊 Всего объектов:', allItems.length)
+         console.log('📊 Пример объекта:', allItems[0])
+
          setRoadmapItems(allItems)
          setFilteredItems(allItems)
 
@@ -111,32 +117,43 @@ function TitlesPage() {
          setStats({ total, update, delete: remove, add, ready })
       } catch (error) {
          console.error('❌ Ошибка загрузки:', error)
-         // Fallback
-         const total = Math.floor(Math.random() * 300 + 200)
-         const update = Math.floor(Math.random() * 50)
-         const remove = Math.floor(Math.random() * 20)
-         const add = Math.floor(Math.random() * 30)
-         setStats({
-            total,
-            update,
-            delete: remove,
-            add,
-            ready: Math.floor(((total - update) / total) * 100),
-         })
-         setRoadmapItems(
-            Array.from({ length: 10 }, (_, index) => ({
-               id: index + 1,
-               name: `${year} • Объект №${index + 1}`,
-               odx: `ODX-${year}-${1000 + index}`,
-               status: ['Актуально', 'Добавить', 'Исключить'][
-                  Math.floor(Math.random() * 3)
-               ],
-               type: index % 2 === 0 ? 'КБУ' : 'ТекРем',
-               area: Math.random() * 1000,
-               cost: Math.random() * 5000000,
-            })),
-         )
-         setFilteredItems(roadmapItems)
+
+         // 👇 ЕСЛИ МОКИ ВЫКЛЮЧЕНЫ - НЕ ПОКАЗЫВАТЬ ФЕЙКОВЫЕ ДАННЫЕ
+         if (!API_CONFIG.USE_MOCKS) {
+            setError(
+               'Не удалось загрузить данные. Проверьте подключение к серверу.',
+            )
+            setRoadmapItems([])
+            setFilteredItems([])
+            setStats({ total: 0, update: 0, delete: 0, add: 0, ready: 0 })
+         } else {
+            // 👇 ЕСЛИ МОКИ ВКЛЮЧЕНЫ - ПОКАЗЫВАТЬ ФЕЙКОВЫЕ ДАННЫЕ
+            const total = Math.floor(Math.random() * 300 + 200)
+            const update = Math.floor(Math.random() * 50)
+            const remove = Math.floor(Math.random() * 20)
+            const add = Math.floor(Math.random() * 30)
+            setStats({
+               total,
+               update,
+               delete: remove,
+               add,
+               ready: Math.floor(((total - update) / total) * 100),
+            })
+            setRoadmapItems(
+               Array.from({ length: 10 }, (_, index) => ({
+                  id: index + 1,
+                  name: `${year} • Объект №${index + 1}`,
+                  odx: `ODX-${year}-${1000 + index}`,
+                  status: ['Актуально', 'Добавить', 'Исключить'][
+                     Math.floor(Math.random() * 3)
+                  ],
+                  type: index % 2 === 0 ? 'КБУ' : 'ТекРем',
+                  area: Math.random() * 1000,
+                  cost: Math.random() * 5000000,
+               })),
+            )
+            setFilteredItems(roadmapItems)
+         }
       } finally {
          setLoading(false)
       }
@@ -146,7 +163,6 @@ function TitlesPage() {
       loadRoadmap(selectedYear)
    }, [selectedYear])
 
-   // Применяем фильтры при изменении searchTerm, sourceFilter, stateFilter или roadmapItems
    useEffect(() => {
       let filtered = roadmapItems
       if (searchTerm) {
@@ -246,14 +262,14 @@ function TitlesPage() {
             </div>
          </div>
 
-         <div className={`${['card']} ${styles['roadmap-dynamics']}`}>
+         <div className={`card ${styles['roadmap-dynamics']}`}>
             <h3>Динамика показателей</h3>
             <div className={styles['title-template-empty']}>
                Здесь позже будут графики
             </div>
          </div>
 
-         <div className={`${['card']} ${styles['roadmap-filter-panel']}`}>
+         <div className={`card ${styles['roadmap-filter-panel']}`}>
             <div className={styles['roadmap-filters']}>
                <input
                   placeholder="Поиск..."
@@ -277,7 +293,7 @@ function TitlesPage() {
                   placeholder="Состояние.."
                />
                <button
-                  className={['main-btn']}
+                  className="main-btn"
                   onClick={() => {
                      setSearchTerm('')
                      setSourceFilter('')
@@ -291,10 +307,33 @@ function TitlesPage() {
 
          <div className={styles['roadmap-list']}>
             {loading ? (
-               <div className={styles['roadmap-card']}>Загрузка...</div>
+               <div className={styles['roadmap-card']}>
+                  <div>Загрузка данных...</div>
+               </div>
+            ) : error ? (
+               <div className={styles['roadmap-card']}>
+                  <div
+                     style={{
+                        textAlign: 'center',
+                        padding: '20px',
+                     }}
+                  >
+                     {error}
+                  </div>
+               </div>
             ) : filteredItems.length === 0 ? (
                <div className={styles['roadmap-card']}>
-                  <div>Нет данных для отображения</div>
+                  <div
+                     style={{
+                        textAlign: 'center',
+                        padding: '20px',
+                        color: '#7a7f93',
+                     }}
+                  >
+                     {API_CONFIG.USE_MOCKS
+                        ? 'Нет данных для отображения (моки включены)'
+                        : 'Нет данных от сервера'}
+                  </div>
                </div>
             ) : (
                filteredItems.map((item) => (
