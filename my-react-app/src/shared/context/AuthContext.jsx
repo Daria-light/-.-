@@ -28,6 +28,12 @@ export default function AuthProvider({ children }) {
    }, [])
 
    const login = async (login, password) => {
+      // 👉 ЗАЩИТА ОТ ПОВТОРНЫХ ВЫЗОВОВ
+      if (user) {
+         console.log('🟡 User already logged in, skipping...')
+         return user
+      }
+
       setLoading(true)
       setError(null)
       try {
@@ -36,7 +42,6 @@ export default function AuthProvider({ children }) {
 
          apiClient.setTokens(accessToken, refreshToken)
 
-         // Сохраняем токены в localStorage
          localStorage.setItem(
             'auth_tokens',
             JSON.stringify({ accessToken, refreshToken }),
