@@ -504,3 +504,198 @@
     font-size: 13px;
   }
 }
+
+.home-module {
+  background: white;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  border-radius: 20px;
+
+  padding: 18px;
+
+  text-align: left;
+
+  transition: 0.2s;
+}
+
+.home-module:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(135deg, var(--violet), var(--violet-2));
+}
+
+.home-module:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+/* Заголовок карточки */
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.task-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary, #1a2332);
+  line-height: 1.4;
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Бейдж статуса */
+.task-status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.status-active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-warn {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-danger {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Тело карточки */
+.task-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-description {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary, #5a6a7e);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Сетка мета-информации */
+.task-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color, #e8ecf1);
+}
+
+.task-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.task-meta-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary, #8a9bb0);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.task-meta-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary, #1a2332);
+}
+
+/* Стили для типа задачи */
+.task-type-regular {
+  color: #4a6cf7;
+}
+
+.task-type-urgent {
+  color: #f44336;
+}
+
+/* Комментарий */
+.task-comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-secondary, #f8f9fa);
+  border-radius: 8px;
+  margin-top: 4px;
+}
+
+.task-comment-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.task-comment-text {
+  font-size: 13px;
+  color: var(--text-secondary, #5a6a7e);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .task-card {
+    padding: 14px 16px;
+  }
+
+  .task-card-header {
+    flex-wrap: wrap;
+  }
+
+  .task-title {
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .task-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .task-description {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-card {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .task-title {
+    font-size: 14px;
+  }
+
+  .task-status-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+}
